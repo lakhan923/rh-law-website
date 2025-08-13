@@ -1,0 +1,231 @@
+/* ========== Base Styles ========== */
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 10;
+  user-select: none;
+  box-sizing: border-box;
+  background-color: #bc9d36;
+  color: white;
+}
+
+.ctaButton {
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  font-size: 1rem;
+  text-decoration: none;
+  background-color: #f4ca23;
+  color: #000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.ctaButton:hover {
+  background-color: #ffcc00;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #0c0909;
+  cursor: pointer;
+}
+
+.logoImage {
+  height: 80px;
+  width: auto;
+  user-select: none;
+}
+
+.logoText {
+  text-decoration: none;
+  color: #0c0909;
+  font-weight: 700;
+  margin-left: 0.5rem;
+  font-size: 1.1rem;
+}
+
+/* ========== Menu Button (Hamburger) ========== */
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  width: 30px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  z-index: 20;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.menuBtn:focus {
+  outline-offset: 2px;
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: #0c0909;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+  transform-origin: center;
+}
+
+/* Animate hamburger to "X" when open */
+.menuBtnOpen .bar:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menuBtnOpen .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menuBtnOpen .bar:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* ========== Menu Items ========== */
+.menuItems {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+}
+
+.menuItems li a {
+  text-decoration: none;
+  color: #0c0909;
+  font-weight: 700;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.menuItems li a:hover,
+.menuItems li a.active {
+  color: #ffffff;
+}
+
+/* ========== Admin dashboard popup ========== */
+/* Modal overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+/* Modal container */
+.modal {
+  background: #fff;
+  width: min(92vw, 360px);
+  border-radius: 12px;
+  padding: 20px 20px 16px;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Close button */
+.closeBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* Input fields */
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+/* Submit button */
+.submitBtn {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #1e3a8a;
+  color: #fff;
+}
+
+/* Error text */
+.error {
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: #b91c1c;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .menuBtn {
+    display: flex;
+  }
+
+  .menuItems {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #bc9d36;
+    width: 60%;
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 1rem;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+  }
+
+  .menuItemsOpen {
+    max-height: 400px;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    overflow: visible;
+  }
+
+  .menuItems li {
+    width: 100%;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #333;
+  }
+
+  .menuItems li:last-child {
+    border-bottom: none;
+  }
+
+  .menuItems li a {
+    width: 100%;
+    display: block;
+    padding-left: 1rem;
+  }
+}

@@ -1,0 +1,233 @@
+.contactSection {
+  background-color: #fefdf9;
+  padding: 4rem 1rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.mapContainer {
+  margin-top: 3rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.thankYouNote {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #eae4e4;
+  border-left: 5px solid #d4af37;
+  color: #222;
+  border-radius: 10px;
+}
+
+.thankYouNote h4 {
+  margin-bottom: 1.5rem;
+}
+
+.thankYouNote:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.heading {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #1d1c1c;
+}
+
+.subheading {
+  text-align: center;
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  justify-content: space-between;
+}
+
+.contactForm {
+  flex: 1 1 500px;
+  background: #eae4e4;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contactForm:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+input,
+textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #d4af37;
+  outline: none;
+}
+
+.submitButton {
+  background-color: #d4af37;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #c39d2f;
+}
+
+.contactDetails {
+  flex: 1 1 300px;
+  background-color: #eae4e4;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  color: #333;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.contactDetails:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.contactDetails h3 {
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  color: #222;
+  font-weight: 600;
+  border-bottom: 2px solid #d4af37;
+  display: inline-block;
+  padding-bottom: 0.3rem;
+}
+
+.contactDetails p {
+  margin: 1rem 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  line-height: 1.5;
+}
+
+.contactLink {
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.contactLink:hover {
+  color: #d4af37;
+}
+
+.icon {
+  color: #d4af37;
+  font-size: 1.2rem;
+  margin-right: 8px;
+}
+
+.feedbackForm {
+  margin-top: 40px;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #eae4e4;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  max-width: 100%;
+  width: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.feedbackForm h3 {
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  color: #222;
+  font-weight: 600;
+  border-bottom: 2px solid #d4af37;
+  text-align: center;
+  padding-bottom: 0.3rem;
+
+}
+
+.feedbackForm:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feedbackForm .formGroup {
+  margin-bottom: 20px;
+}
+
+.feedbackForm label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.feedbackForm input[type="text"],
+.feedbackForm input[type="email"],
+.feedbackForm textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1.8px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.feedbackForm input[type="text"]:focus,
+.feedbackForm input[type="email"]:focus,
+.feedbackForm textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .contactForm,
+  .contactDetails {
+    width: 100%;
+  }
+}

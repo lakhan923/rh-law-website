@@ -1,0 +1,40 @@
+.detailWrapper {
+  padding: 4rem 1.5rem;
+  background-color: #fefefe;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f1f1f;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+.content h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-top: 2rem;
+}
+
+.content p,
+.content ul {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+.content ul {
+  padding-left: 1.2rem;
+  list-style: disc;
+}

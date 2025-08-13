@@ -1,0 +1,58 @@
+[
+  {
+    "id": "civil-constitutional-law",
+    "slug": "civil-constitutional-law",
+    "icon": "FaGavel",
+    "title": "Civil & Constitutional Law",
+    "description": "We handle writ petitions, civil suits, and constitutional challenges before the High Courts and District Courts."
+  },
+  {
+    "id": "family-law",
+    "slug": "family-law",
+    "icon": "FaHome",
+    "title": "Family Law",
+    "description": "Legal assistance with divorce, child custody, guardianship, inheritance, and maintenance issues."
+  },
+  {
+    "id": "corporate-commercial-law",
+    "slug": "corporate-commercial-law",
+    "icon": "FaBuilding",
+    "title": "Corporate & Commercial Law",
+    "description": "Advisory and litigation services related to company formation, compliance, contracts, and dispute resolution."
+  },
+  {
+    "id": "human-rights-law",
+    "slug": "human-rights-law",
+    "icon": "FaUsers",
+    "title": "Human Rights Law",
+    "description": "Extensive experience in international and national human rights protections, pro bono litigation, and law reform."
+  },
+  {
+    "id": "public-international-law",
+    "slug": "public-international-law",
+    "icon": "FaGlobe",
+    "title": "Public International Law",
+    "description": "Specialized in climate justice, humanitarian law, and international treaties related to human rights."
+  },
+  {
+    "id": "service-employment-law",
+    "slug": "service-employment-law",
+    "icon": "FaBalanceScale",
+    "title": "Service & Employment Law",
+    "description": "Legal expertise in public sector service matters, disciplinary actions, and employment disputes."
+  },
+  {
+    "id": "legal-consultancy",
+    "slug": "legal-consultancy",
+    "icon": "FaBriefcase",
+    "title": "Legal Consultancy",
+    "description": "Contract vetting, legal opinions, regulatory compliance, and statutory drafting across public/private sectors."
+  },
+  {
+    "id": "immigration-law",
+    "slug": "immigration-law",
+    "icon": "FaPassport",
+    "title": "Immigration Law",
+    "description": "Immigration advice and assistance with visas, appeals, and international mobility matters."
+  }
+]

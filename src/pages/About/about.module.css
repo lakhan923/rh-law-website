@@ -1,0 +1,194 @@
+.aboutSection {
+  background: #fefdf9;
+  padding: 4rem 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #2d2d2d;
+}
+
+.subTitle {
+  font-size: 2rem;
+  margin: 3rem 0 1.5rem;
+  color: #1a1a1a;
+}
+
+.intro {
+  font-size: 1.2rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.highlight {
+  color: #bc9d36;
+  font-weight: 600;
+}
+
+.cardSection {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  background: #fdf7e2;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  width: 280px;
+  text-align: left;
+}
+
+.card p {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.card h2 {
+  color: #2d2d2d;
+  margin-bottom: 1rem;
+}
+
+.founders {
+  text-align: center;
+}
+
+.founderProfiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.founderCard {
+  max-width: 330px;
+  background: #fdf7e2;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  text-align: left;
+}
+
+.founderPhoto {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #bc9d36;
+}
+
+.founderName {
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: #1a1a1a;
+  margin-bottom: 0.5rem;
+}
+
+.founderBio {
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.practiceAreasWrapper {
+  position: relative; /* to prevent overlap */
+  padding: 2rem 1rem;
+  background-color: #f9f9f9; /* optional, to visually separate */
+  z-index: 5; /* adjust as needed */
+  margin-bottom: 3rem; /* space below to prevent overlap */
+  box-sizing: border-box;
+}
+
+.practiceLink {
+  display: flex;
+  align-items: center;
+  color: #0c0909;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.practiceLink:hover {
+  color: #166be0;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 1.25rem;
+  color: #bc9d36;
+}
+
+.areaList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.cta {
+  margin-top: 4rem;
+  background: #bc9d36;
+  padding: 2rem;
+  border-radius: 10px;
+  color: white;
+}
+
+.cta h2 {
+  margin-bottom: 0.5rem;
+}
+
+.ctaButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  background: #fff;
+  color: #bc9d36;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.ctaButton:hover {
+  background: #f1f1f1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cardSection,
+  .founderProfiles,
+  .areaList {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card,
+  .founderCard {
+    width: 90%;
+  }
+
+  .intro {
+    font-size: 1.1rem;
+  }
+}
