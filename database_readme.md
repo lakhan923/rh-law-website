@@ -10,7 +10,7 @@ npm install express cors body-parser mysql2 dotenv
 ---- Create a .env file in /database_rh_law:
 DB_HOST=localhost
 DB_USER=root
-DB_PASSWORD=Enter_password
+DB_PASSWORD=
 DB_NAME=law_firm
 PORT=5000
 ADMIN_USERNAME=admin
