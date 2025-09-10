@@ -1,12 +1,12 @@
 .heroSection {
   position: relative;
-  height: 100vh;
   width: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
 }
 
 /* Background Image Styling */
@@ -14,10 +14,10 @@
   position: absolute;
   top: 0;
   left: 0;
+  height: 100vh;
   width: 100%;
-  height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 40%;
   z-index: 1;
   filter: brightness(0.6);
 }
@@ -90,8 +90,8 @@
 
 .profileSection {
   padding: 4rem 2rem;
-  background-color: #F6F2EC;
-  text-align: center; /* Center title */
+  background-color: #f6f2ec;
+  text-align: center;
   position: relative;
   z-index: 2;
 }
@@ -113,10 +113,10 @@
   justify-content: center;
   align-items: flex-start;
   gap: 4rem;
-  flex-wrap: wrap; /* allow responsiveness */
-  text-align: left; /* quotes and cards align left inside */
-  max-width: 1200px; /* optional max width */
-  margin: 0 auto; /* center horizontally */
+  flex-wrap: wrap;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .profileGrid {
@@ -135,30 +135,49 @@
   transition: transform 0.3s ease;
 }
 
-.profileCard h3{
-  color: black;
-}
-
 .profileCard:hover {
   transform: translateY(-5px);
 }
 
-.profileImage {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+.profileCard h3,
+.profileCard .profileRole,
+.profileCard p {
+  margin: 0.5rem 0;
+  text-align: center; /* center under icon/photo */
+  color: #000;
 }
 
 .profileRole {
   font-weight: 600;
   color: #777;
-  margin-bottom: 0.5rem;
 }
 
-.profileCard p {
-  color: #000;
+/* Unified circular icon/photo */
+.profileIcon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1rem auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+/* Photo inside circle */
+.profileIcon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* React icon inside circle */
+.profileIcon svg {
+  width: 100%;
+  height: 100%;
+  color: #5b5858;
 }
 
 .readMore {
@@ -173,6 +192,7 @@
   text-decoration: underline;
 }
 
+/* Quote Carousel Styling */
 .quoteCarousel {
   width: 100%;
   max-width: 800px;
@@ -276,7 +296,7 @@
 
 /* === Affiliations Section === */
 .affiliationsSection {
-  background-color: #F6F2EC;
+  background-color: #f6f2ec;
   padding: 5rem 3rem;
   text-align: center;
   color: #111;
@@ -356,12 +376,12 @@
   }
 
   .heroTitle {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     margin-bottom: 0.75rem;
   }
 
   .heroSubtitle {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-bottom: 1.5rem;
   }
 
@@ -437,7 +457,7 @@
     padding: 3rem 1rem;
   }
 
-  .sectionTitle{
+  .sectionTitle {
     font-size: 1.15rem;
   }
 

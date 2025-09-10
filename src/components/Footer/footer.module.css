@@ -44,7 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #0f0d0d;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .contactLink {
-  color: #0F0D0D;
+  color: #0f0d0d;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
@@ -155,49 +155,136 @@
   padding-top: 1rem;
 }
 
-/* Responsive adjustments */
+.footerMotto {
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #050303;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* ===== Mobile Responsive Footer ===== */
 @media (max-width: 768px) {
-  .topSection {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logoSection {
-    margin-bottom: 1.5rem;
-  }
-
-  .contactInfo {
-    align-items: center;
-    text-align: center;
-  }
-
-  .foundersSection {
-    justify-content: center;
-  }
-
-  .founderCard {
-    width: 80%;
-    max-width: 200px;
+  .footer {
+    padding: 2rem 1rem;
   }
 
   .footerColumns {
     flex-direction: column;
     align-items: center;
-  }
-
-  .foundersAndLinks {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    gap: 2rem;
   }
 
   .leftColumn,
   .rightColumn {
     text-align: center;
+    align-items: center;
+  }
+
+  .contactInfo {
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .contactInfo p {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+
+  .foundersAndLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .foundersSection {
+    align-items: center;
     text-align: center;
   }
 
-  .quickLinks ul {
+  .quickLinksGrid ul {
+    grid-template-columns: 1fr;
+    gap: 0.5rem 1rem;
     justify-content: center;
+  }
+
+  .quickLinksGrid li a {
+    font-size: 0.95rem;
+  }
+
+  .footerText,
+  .footerMotto {
+    font-size: 0.85rem;
+  }
+}
+
+/* ===== Mobile Responsive Footer ===== */
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 1rem;
+  }
+
+  .footerColumns {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .leftColumn,
+  .rightColumn {
+    text-align: center;
+    align-items: center;
+  }
+
+  .contactInfo {
+    align-items: center;
+    text-align: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .contactInfo p {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .socialLinks {
+    justify-content: center;
+  }
+
+  .foundersAndLinks {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .foundersSection {
+    align-items: center;
+    text-align: center;
+  }
+
+  .quickLinksGrid ul {
+    grid-template-columns: 1fr;
+    gap: 0.5rem 1rem;
+    justify-content: center;
+  }
+
+  .quickLinksGrid li a {
+    font-size: 0.95rem;
+  }
+
+  .footerText,
+  .footerMotto {
+    font-size: 0.85rem;
   }
 }

@@ -11,6 +11,7 @@ import {
   FaBriefcase,
   FaPassport,
 } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 
 const About = () => {
   return (
@@ -63,11 +64,9 @@ const About = () => {
           <div className={styles.founderProfiles}>
             {/* Hareem Hilal */}
             <div className={styles.founderCard}>
-              <img
-                src="/assets/hareem-hilal.png"
-                alt="Hareem Hilal"
-                className={styles.founderPhoto}
-              />
+              <div className={styles.founderIcon}>
+                <FaUserCircle />
+              </div>
               <h3 className={styles.founderName}>Ms. Hareem Hilal</h3>
               <p className={styles.founderBio}>
                 Ms. Hareem Hilal brings together academic depth and grassroots
@@ -91,11 +90,13 @@ const About = () => {
 
             {/* Qurrat Ul Ain Rehman */}
             <div className={styles.founderCard}>
-              <img
-                src="/assets/qurrat-ul-ain-rehman.jpeg"
-                alt="Qurrat Ul Ain Rehman"
-                className={styles.founderPhoto}
-              />
+              <div className={styles.founderIcon}>
+                <img
+                  src="/assets/qurrat-ul-ain-rehman.jpeg"
+                  alt="Qurrat Ul Ain Rehman"
+                  className={styles.founderPhoto}
+                />
+              </div>
               <h3 className={styles.founderName}>Ms. Qurrat Ul Ain Rehman</h3>
               <p className={styles.founderBio}>
                 Ms. Rehman, Founding Partner at R & H Law Associates, is a

@@ -91,7 +91,18 @@ function Contact() {
             </p>
             <p>
               <FaMapMarkerAlt className={styles.icon} />
-              Pakistan, Islamabad
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=309%2C+3rd+Floor%2C+Plot+No.2-G+Capital+Business+Centre+%28CBC%29%2C+F-10+Markaz%2C+Islamabad"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                309, 3rd Floor, Plot No.2-G
+                <br />
+                Capital Business Centre (CBC)
+                <br />
+                F-10 Markaz, Islamabad
+              </a>
             </p>
           </div>
         </div>
@@ -99,12 +110,13 @@ function Contact() {
         {/* Map Section */}
         <div className={styles.mapContainer}>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.3831022575083!2d73.03399891520633!3d33.68442278070056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfb8f0a5d6bb07%3A0x7a1870d0204f038f!2sIslamabad%2C%20Pakistan!5e0!3m2!1sen!2sus!4v1691234567890!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.305791224704!2d72.91402151520638!3d33.69289878070037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbe1502db021d%3A0xde40eefc4ee9a8e1!2sCapital%20Business%20Centre%20(CBC)!5e0!3m2!1sen!2s!4v1757500000000!5m2!1sen!2s"
             width="100%"
             height="250"
             style={{ border: 0 }}
-            allowFullScreen=""
+            allowFullScreen
             loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
             title="Office Location"
           ></iframe>
         </div>

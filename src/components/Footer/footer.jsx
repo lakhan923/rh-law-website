@@ -38,8 +38,21 @@ function Footer() {
           <div className={styles.leftColumn}>
             <div className={styles.contactInfo}>
               <p>
-                <FaMapMarkerAlt /> Pakistan, Islamabad
+                <FaMapMarkerAlt className={styles.icon} />
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=309%2C+3rd+Floor%2C+Plot+No.2-G+Capital+Business+Centre+%28CBC%29%2C+F-10+Markaz%2C+Islamabad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.contactLink}
+                >
+                  309, 3rd Floor, Plot No.2-G
+                  <br />
+                  Capital Business Centre (CBC)
+                  <br />
+                  F-10 Markaz, Islamabad
+                </a>
               </p>
+
               <p>
                 <FaPhone />
                 <a href="tel:+923365374302" className={styles.contactLink}>
@@ -129,6 +142,7 @@ function Footer() {
         </div>
 
         <div className={styles.footerText}>
+          <p className={styles.footerMotto}>FAITH . UNITY . DISCIPLINE</p>
           &copy; {new Date().getFullYear()}{" "}
           <strong>R & H Law Associates and Consultants LLP</strong>. All rights
           reserved.

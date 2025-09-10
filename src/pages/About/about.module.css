@@ -40,7 +40,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 
 .card {
@@ -50,6 +50,13 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   width: 280px;
   text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover,
+.founderCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card p {
@@ -66,6 +73,7 @@
 
 .founders {
   text-align: center;
+  margin-bottom: 5rem;
 }
 
 .founderProfiles {
@@ -81,16 +89,34 @@
   padding: 2rem 1.5rem;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
 }
 
+.founderIcon {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1rem auto; /* center horizontally */
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Photo */
 .founderPhoto {
-  width: 130px;
-  height: 130px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
-  margin-bottom: 1rem;
-  border: 3px solid #bc9d36;
+}
+
+/* Icon */
+.founderIcon svg {
+  width: 100%;
+  height: 100%;
+  color: #5b5858;
 }
 
 .founderName {
@@ -127,6 +153,7 @@
 
 .practiceLink:hover {
   color: #166be0;
+  text-decoration: none;
 }
 
 .icon {
