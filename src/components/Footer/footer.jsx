@@ -1,66 +1,46 @@
 import React from "react";
 import styles from "./footer.module.css";
 import {
-  FaLinkedin,
   FaInstagram,
-  FaFacebook,
   FaPhone,
   FaEnvelope,
   FaMapMarkerAlt,
   FaUserClock,
 } from "react-icons/fa";
 
-const founders = [
-  {
-    name: "Ms. Qurrat Ul Ain Rehman",
-    socials: {
-      linkedin: "https://www.linkedin.com/in/qurrat-ul-ain-rehman-38504299/",
-      instagram: "https://instagram.com/",
-      facebook: "https://facebook.com/",
-    },
-  },
-  {
-    name: "Ms. Hareem Hilal",
-    socials: {
-      linkedin: "https://www.linkedin.com/in/hareem-hilal-615a17179/",
-      instagram: "https://instagram.com/",
-      facebook: "https://facebook.com/",
-    },
-  },
-];
-
 function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
         <div className={styles.footerColumns}>
-          {/* Left Side: Contact Info */}
+          {/* Left Column: Contact Info */}
           <div className={styles.leftColumn}>
             <div className={styles.contactInfo}>
               <p>
                 <FaMapMarkerAlt className={styles.icon} />
                 <a
-                  href="https://www.google.com/maps/search/?api=1&query=309%2C+3rd+Floor%2C+Plot+No.2-G+Capital+Business+Centre+%28CBC%29%2C+F-10+Markaz%2C+Islamabad"
+                  href="https://www.google.com/maps/search/?api=1&query=House+%231592,+Street+%2319/1,+Block-C,+NPF,+Sector+O-9,+Capital+Business+Centre+(CBC),+Islamabad,+Pakistan"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={styles.contactLink}
                 >
-                  309, 3rd Floor, Plot No.2-G
+                  House #1592, Street #19/1, Block-C
+                  <br />
+                  NPF, Sector O-9
                   <br />
                   Capital Business Centre (CBC)
                   <br />
-                  F-10 Markaz, Islamabad
+                  Islamabad, Pakistan
                 </a>
               </p>
-
               <p>
-                <FaPhone />
+                <FaPhone className={styles.icon} />
                 <a href="tel:+923365374302" className={styles.contactLink}>
                   +92 336 5374302
                 </a>
               </p>
               <p>
-                <FaEnvelope />{" "}
+                <FaEnvelope className={styles.icon} />
                 <a
                   href="mailto:rhlawassociates@gmail.com"
                   className={styles.contactLink}
@@ -69,80 +49,65 @@ function Footer() {
                 </a>
               </p>
               <p>
-                <FaUserClock />
-                <strong>Office Hours:</strong> Mon – Fri: 9:00 AM – 5:00 PM
+                <FaUserClock className={styles.icon} />
+                <strong>Contact Hours:</strong> Mon – Fri: 9:00 AM – 5:00 PM
               </p>
             </div>
           </div>
 
-          {/* Right Side: Founders + Quick Links */}
-          <div className={styles.rightColumn}>
-            <div className={styles.foundersAndLinks}>
-              {/* Founders */}
-              <div className={styles.foundersSection}>
-                <h4 className={styles.foundersTitle}>Founders</h4>
-                {founders.map((founder) => (
-                  <div key={founder.name} className={styles.founderItem}>
-                    <span className={styles.founderName}>{founder.name}</span>
-                    <div className={styles.socialLinks}>
-                      <a
-                        href={founder.socials.linkedin}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <FaLinkedin />
-                      </a>
-                      <a
-                        href={founder.socials.instagram}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <FaInstagram />
-                      </a>
-                      <a
-                        href={founder.socials.facebook}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <FaFacebook />
-                      </a>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          {/* Middle Column: Quick Links */}
+          <div className={styles.middleColumn}>
+            <nav
+              className={styles.quickLinksGrid}
+              aria-label="Footer Navigation"
+            >
+              <ul>
+                <li>
+                  <a href="/practice-areas">Practice Areas</a>
+                </li>
+                <li>
+                  <a href="/about">About Us</a>
+                </li>
+                <li>
+                  <a href="/team">Team</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact</a>
+                </li>
+                <li>
+                  <a href="/privacyPolicy">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/book">Book Appointment</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
 
-              {/* Quick Links */}
-              <nav className={styles.quickLinksGrid}>
-                <ul>
-                  <li>
-                    <a href="/practice-areas">Practice Areas</a>
-                  </li>
-                  <li>
-                    <a href="/about">About Us</a>
-                  </li>
-                  <li>
-                    <a href="/team">Team</a>
-                  </li>
-                  <li>
-                    <a href="/contact">Contact</a>
-                  </li>
-                  <li>
-                    <a href="/privacyPolicy">Privacy Policy</a>
-                  </li>
-                  <li>
-                    <a href="/">Home</a>
-                  </li>
-                  <li>
-                    <a href="/book">Book Appointment</a>
-                  </li>
-                </ul>
-              </nav>
+          {/* Right Column: Follow Us */}
+          <div className={styles.rightColumn}>
+            <div className={styles.followUsSection}>
+              <h4 className={styles.foundersTitle}>Follow Us</h4>
+              <div className={styles.socialLinks}>
+                <a
+                  href="https://www.instagram.com/r__h_law?igsh=OW94NnptdTI1N2g4"
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.instagramLink}
+                  aria-label="Visit our Instagram"
+                >
+                  <FaInstagram className={styles.icon} />
+                  <span>Instagram</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
         <div className={styles.footerText}>
-          <p className={styles.footerMotto}>FAITH . UNITY . DISCIPLINE</p>
           &copy; {new Date().getFullYear()}{" "}
           <strong>R & H Law Associates and Consultants LLP</strong>. All rights
           reserved.

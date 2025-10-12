@@ -1,6 +1,11 @@
 import React from "react";
 import styles from "./contact.module.css";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  FaPhoneAlt,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaInstagram,
+} from "react-icons/fa";
 
 function Contact() {
   return (
@@ -92,16 +97,29 @@ function Contact() {
             <p>
               <FaMapMarkerAlt className={styles.icon} />
               <a
-                href="https://www.google.com/maps/search/?api=1&query=309%2C+3rd+Floor%2C+Plot+No.2-G+Capital+Business+Centre+%28CBC%29%2C+F-10+Markaz%2C+Islamabad"
+                href="https://www.google.com/maps/search/?api=1&query=House+%231592,+Street+%2319/1,+Block-C,+NPF,+Sector+O-9,+Capital+Business+Centre+(CBC),+Islamabad,+Pakistan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.contactLink}
               >
-                309, 3rd Floor, Plot No.2-G
+                House #1592, Street #19/1, Block-C
+                <br />
+                NPF, Sector O-9
                 <br />
                 Capital Business Centre (CBC)
                 <br />
-                F-10 Markaz, Islamabad
+                Islamabad, Pakistan
+              </a>
+            </p>
+            <p>
+              <FaInstagram className={styles.icon} />
+              <a
+                href="https://www.instagram.com/r__h_law"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                r_h_law
               </a>
             </p>
           </div>
@@ -110,7 +128,7 @@ function Contact() {
         {/* Map Section */}
         <div className={styles.mapContainer}>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.305791224704!2d72.91402151520638!3d33.69289878070037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbe1502db021d%3A0xde40eefc4ee9a8e1!2sCapital%20Business%20Centre%20(CBC)!5e0!3m2!1sen!2s!4v1757500000000!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31560.0000!2d72.856!3d33.684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIslamabad,+Pakistan!5e0!3m2!1sen!2s!4v0000000000000!5m2!1sen!2s"
             width="100%"
             height="250"
             style={{ border: 0 }}
@@ -118,7 +136,7 @@ function Contact() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Office Location"
-          ></iframe>
+          />
         </div>
 
         {/* Feedback Form */}

@@ -20,8 +20,8 @@ function Home() {
             Welcome to R & H Law Associates & Consultants
           </h1>
           <p className={styles.heroSubtitle}>
-            Your trusted legal partners across constitutional, corporate, and
-            human rights law.
+            Your trusted legal partners across Civil, Corporate, and Immigration
+            laws.
           </p>
           <a href="/contact" className={styles.heroButton}>
             Book a Consultation
@@ -93,7 +93,7 @@ function Home() {
       <section className={styles.MapSection}>
         <div className={styles.mapEmbed}>
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3320.305791224704!2d72.91402151520638!3d33.69289878070037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbe1502db021d%3A0xde40eefc4ee9a8e1!2sCapital%20Business%20Centre%20(CBC)!5e0!3m2!1sen!2s!4v1757500000000!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31560.0000!2d72.856!3d33.684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIslamabad,+Pakistan!5e0!3m2!1sen!2s!4v0000000000000!5m2!1sen!2s"
             width="100%"
             height="250"
             style={{ border: 0 }}
@@ -133,24 +133,32 @@ function Home() {
           </div>
 
           <div className={styles.affiliationCard}>
-            <a
-              href="https://www.bahria.edu.pk/Home/FacultyDetails?facultyId=666"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/assets/bahria-uni-logo.jpeg" alt="Bahria University" />
-              <p>Senior Lecturer, Bahria</p>
+            <a href="..." target="_blank" rel="noopener noreferrer">
+              <img
+                src="/assets/un_student_logo.png"
+                alt="UN Student Association"
+              />
+              <p>UN Student Association Oslo</p>
             </a>
           </div>
 
           <div className={styles.affiliationCard}>
-            <a
-              href="https://nls.nust.edu.pk/faculty/hareem-hilal/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src="/assets/nust-uni-logo.png" alt="NUST" />
-              <p>Assistant Professor, NUST</p>
+            <a href="..." target="_blank" rel="noopener noreferrer">
+              <img
+                src="/assets/Citizens_hilingdon_logo.png"
+                alt="Citizens advice Hilingdon"
+              />
+              <p>Citizens Advice Hilingdon</p>
+            </a>
+          </div>
+
+          <div className={styles.affiliationCard}>
+            <a href="..." target="_blank" rel="noopener noreferrer">
+              <img
+                src="/assets/WCEL.png"
+                alt="World Commission on Environmental Law"
+              />
+              <p>World Commission on Environmental Law</p>
             </a>
           </div>
         </div>

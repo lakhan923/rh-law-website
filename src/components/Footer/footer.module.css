@@ -1,5 +1,4 @@
 @import "../../vars.css";
-/* footer.module.css */
 
 .container {
   max-width: 1200px;
@@ -14,32 +13,34 @@
   box-sizing: border-box;
 }
 
+/* Footer Columns */
 .footerColumns {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 2rem;
+  align-items: flex-start; 
 }
 
-.leftColumn,
+/* Align middle and right column headings with each other */
+.middleColumn,
 .rightColumn {
-  flex: 1;
-  min-width: 280px;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  justify-content: flex-start; 
 }
 
-/* Top Section: logo and contact info side by side */
-.topSection {
-  display: flex;
-  justify-content: center; /* center content horizontally */
-  align-items: center;
-  margin-bottom: 3rem;
+/* add spacing from top so headings match visually */
+.middleColumn {
+  margin-top: 0.3rem; 
 }
 
-/* Contact info aligned vertically */
+.rightColumn {
+  margin-top: 0.3rem; 
+}
+
+/* Contact Info */
 .contactInfo {
   display: flex;
   flex-direction: column;
@@ -55,7 +56,6 @@
   font-weight: 600;
 }
 
-/* Icon styling */
 .contactInfo svg {
   color: #444138;
   min-width: 20px;
@@ -73,63 +73,14 @@
   color: #ffffff;
 }
 
-/* Founders section: cards in a row with gap */
-.foundersAndLinks {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.foundersSection {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.quickLinksGrid {
-  display: flex;
-  align-items: flex-start;
-}
-
-.foundersTitle {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: #0d0d0f;
-  text-decoration: none;
-}
-
-.founderItem {
-  margin-bottom: 0rem;
-}
-
-.founderName {
-  font-weight: 600;
-  font-size: 1rem;
-  color: #0f0d0d;
-}
-
-.socialLinks a {
-  margin: 0 0.4rem;
-  font-size: 1.2rem;
-  color: #444138;
-  transition: color 0.3s ease;
-}
-
-.socialLinks a:hover {
-  color: #ffffff;
-}
-
-/* Quick Links on right side */
+/* Quick Links */
 .quickLinksGrid ul {
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 0.75rem 2rem;
   list-style: none;
   padding: 0;
-  margin: 1.5rem auto;
+  margin: 1rem auto;
   max-width: 300px;
   justify-content: center;
 }
@@ -146,7 +97,59 @@
   color: #f7f4e9;
 }
 
-/* Footer bottom text */
+/* Follow Us */
+.followUsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* aligns heading with middle column */
+  gap: 0.3rem;
+}
+
+.foundersTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0d0d0f;
+  margin-bottom: 0.2rem;
+}
+
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.socialLinks a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #0f0d0d;
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.socialLinks a:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.socialLinks svg {
+  font-size: 1.3rem;
+  color: #0f0d0d;
+  transition: color 0.3s ease;
+}
+
+.socialLinks a:hover svg {
+  color: #ffffff;
+}
+
+.socialLinks span {
+  font-size: 1rem;
+  letter-spacing: 0.3px;
+}
+
+/* Footer Bottom Text */
 .footerText {
   text-align: center;
   font-size: 0.9rem;
@@ -155,22 +158,8 @@
   padding-top: 1rem;
 }
 
-.footerMotto {
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: #050303;
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  text-align: center;
-  font-size: 0.95rem;
-}
-
-/* ===== Mobile Responsive Footer ===== */
+/* Mobile Responsiveness */
 @media (max-width: 768px) {
-  .footer {
-    padding: 2rem 1rem;
-  }
-
   .footerColumns {
     flex-direction: column;
     align-items: center;
@@ -178,16 +167,10 @@
   }
 
   .leftColumn,
+  .middleColumn,
   .rightColumn {
     text-align: center;
     align-items: center;
-  }
-
-  .contactInfo {
-    align-items: center;
-    text-align: center;
-    gap: 0.6rem;
-    font-size: 0.9rem;
   }
 
   .contactInfo p {
@@ -200,91 +183,9 @@
     justify-content: center;
   }
 
-  .foundersAndLinks {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .foundersSection {
-    align-items: center;
-    text-align: center;
-  }
-
   .quickLinksGrid ul {
     grid-template-columns: 1fr;
     gap: 0.5rem 1rem;
     justify-content: center;
-  }
-
-  .quickLinksGrid li a {
-    font-size: 0.95rem;
-  }
-
-  .footerText,
-  .footerMotto {
-    font-size: 0.85rem;
-  }
-}
-
-/* ===== Mobile Responsive Footer ===== */
-@media (max-width: 768px) {
-  .footer {
-    padding: 2rem 1rem;
-  }
-
-  .footerColumns {
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .leftColumn,
-  .rightColumn {
-    text-align: center;
-    align-items: center;
-  }
-
-  .contactInfo {
-    align-items: center;
-    text-align: center;
-    gap: 0.6rem;
-    font-size: 0.9rem;
-  }
-
-  .contactInfo p {
-    flex-direction: column;
-    align-items: center;
-    gap: 0.3rem;
-  }
-
-  .socialLinks {
-    justify-content: center;
-  }
-
-  .foundersAndLinks {
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .foundersSection {
-    align-items: center;
-    text-align: center;
-  }
-
-  .quickLinksGrid ul {
-    grid-template-columns: 1fr;
-    gap: 0.5rem 1rem;
-    justify-content: center;
-  }
-
-  .quickLinksGrid li a {
-    font-size: 0.95rem;
-  }
-
-  .footerText,
-  .footerMotto {
-    font-size: 0.85rem;
   }
 }
