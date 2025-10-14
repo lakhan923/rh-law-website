@@ -12,12 +12,9 @@ const Book = () => {
         loading="eager"
       />
       <div className={styles["container-time"]}>
-        <h2 className={styles.heading}>Time Open</h2>
-        <h3 className={styles["heading-days"]}>Monday-Friday</h3>
-        <p>9:00 AM - 5:00 AM </p>
-
-        <h3 className={styles["heading-days"]}>Saturday</h3>
-        <p>12:00 AM - 4:00 PM</p>
+        <h2>Contact Hours</h2>
+        <h3 className={styles["heading-days"]}>Monday - Friday</h3>
+        <p>9:00 AM – 5:00 PM </p>
         <hr />
 
         <h4 className={styles["heading-phone"]}>Call Us: +92 336 5374302</h4>
