@@ -112,54 +112,48 @@ function Home() {
         </h2>
         <div className={styles.affiliationsGrid}>
           <div className={styles.affiliationCard}>
-            <a
+            {/* <a
               href="https://www.linkedin.com/in/qurrat-ul-ain-rehman-38504299/"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              <img src="/assets/Brunel-logo.png" alt="Brunel University" />
-              <p>Brunel University London</p>
-            </a>
+            > */}
+            <img src="/assets/Brunel-logo.png" alt="Brunel University" />
+            <p>Brunel University London</p>
+            {/* </a> */}
           </div>
           <div className={styles.affiliationCard}>
-            <a
+            {/* <a
               href="https://www.linkedin.com/in/hareem-hilal-615a17179/"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              <img src="/assets/oslo-uni-logo.png" alt="University of Oslo" />
-              <p>University of Oslo</p>
-            </a>
+            > */}
+            <img src="/assets/oslo-uni-logo.png" alt="University of Oslo" />
+            <p>University of Oslo</p>
+            {/* </a> */}
           </div>
 
           <div className={styles.affiliationCard}>
-            <a href="..." target="_blank" rel="noopener noreferrer">
-              <img
-                src="/assets/un_student_logo.png"
-                alt="UN Student Association"
-              />
-              <p>UN Student Association Oslo</p>
-            </a>
+            <img
+              src="/assets/un_student_logo.png"
+              alt="UN Student Association"
+            />
+            <p>UN Student Association Oslo</p>
           </div>
 
           <div className={styles.affiliationCard}>
-            <a href="..." target="_blank" rel="noopener noreferrer">
-              <img
-                src="/assets/Citizens_hilingdon_logo.png"
-                alt="Citizens advice Hilingdon"
-              />
-              <p>Citizens Advice Hilingdon</p>
-            </a>
+            <img
+              src="/assets/Citizens_hilingdon_logo.png"
+              alt="Citizens advice Hilingdon"
+            />
+            <p>Citizens Advice Hilingdon</p>
           </div>
 
           <div className={styles.affiliationCard}>
-            <a href="..." target="_blank" rel="noopener noreferrer">
-              <img
-                src="/assets/WCEL.png"
-                alt="World Commission on Environmental Law"
-              />
-              <p>World Commission on Environmental Law</p>
-            </a>
+            <img
+              src="/assets/WCEL.png"
+              alt="World Commission on Environmental Law"
+            />
+            <p>World Commission on Environmental Law</p>
           </div>
         </div>
       </section>

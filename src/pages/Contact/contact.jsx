@@ -97,7 +97,7 @@ function Contact() {
             <p>
               <FaMapMarkerAlt className={styles.icon} />
               <a
-                href="https://www.google.com/maps/search/?api=1&query=House+%231592,+Street+%2319/1,+Block-C,+NPF,+Sector+O-9,+Capital+Business+Centre+(CBC),+Islamabad,+Pakistan"
+                href="https://www.google.com/maps/search/?api=1&query=House+%231592%2C+Street+%2319%2F1%2C+Block-C%2C+NPF%2C+Sector+O-9%2C+Islamabad%2C+Pakistan"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.contactLink}
@@ -105,8 +105,6 @@ function Contact() {
                 House #1592, Street #19/1, Block-C
                 <br />
                 NPF, Sector O-9
-                <br />
-                Capital Business Centre (CBC)
                 <br />
                 Islamabad, Pakistan
               </a>
