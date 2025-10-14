@@ -73,6 +73,17 @@
   font-weight: 600;
 }
 
+/* Style email link */
+.privacyContainer a {
+  color: rgb(206, 200, 200);
+  text-decoration: underline; 
+  transition: color 0.3s ease;
+}
+
+.privacyContainer a:hover {
+  color: #ffd700;
+}
+
 @media (max-width: 768px) {
   .privacyContainer {
     padding: 2rem 1rem;
