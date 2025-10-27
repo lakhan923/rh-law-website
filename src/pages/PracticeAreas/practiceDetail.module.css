@@ -38,3 +38,11 @@
   padding-left: 1.2rem;
   list-style: disc;
 }
+
+.practiceImage {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}

@@ -40,6 +40,13 @@ export default function PracticeDetail() {
         <p className={styles.description}>{area.description}</p>
 
         <div className={styles.content}>
+          {details.image && (
+            <img
+              src={details.image}
+              alt={area.title}
+              className={styles.practiceImage}
+            />
+          )}
           <h2>Overview</h2>
           <p>{details.overview}</p>
 
