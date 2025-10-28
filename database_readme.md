@@ -66,3 +66,17 @@ email VARCHAR(150) NOT NULL,
 feedback TEXT NOT NULL,
 submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+### What the status field represents in appointment table?
+
+The status column tracks the current state of an appointment:
+	
+# Pending	
+Appointment has been submitted but not yet confirmed.
+
+# Confirmed	
+Appointment is approved or scheduled by the admin.
+
+# Completed	
+Appointment has been fulfilled or completed.
