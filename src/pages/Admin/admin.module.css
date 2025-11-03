@@ -195,6 +195,41 @@ mark {
   font-size: 0.9rem;
 }
 
+/* CSV Export Button */
+.exportButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #4e89ff;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.exportButton:hover {
+  background-color: #3c3c60;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  transform: translateY(-2px);
+}
+
+.exportButton svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+
+/* Icon inside button */
+.exportButton svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
 /* ======= Mobile & Tablet Devices (max-width: 900px) ======= */
 @media (max-width: 900px) {
   /* Hide table header */
@@ -268,6 +303,11 @@ mark {
   .tabs {
     flex-direction: column;
   }
+
+  .exportButton {
+    max-width: 48%;
+    justify-content: center;
+  }
 }
 
 /* ======= Tablet Specific (601px - 900px) ======= */
@@ -313,5 +353,12 @@ mark {
   .searchInput,
   .statusDropdown {
     max-width: 48%;
+  }
+
+  .exportButton {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 0;
+    font-size: 1rem;
   }
 }

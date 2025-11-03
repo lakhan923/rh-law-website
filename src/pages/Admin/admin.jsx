@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CSVLink } from "react-csv";
+import {
+  FaEnvelope,
+  FaCalendarAlt,
+  FaRegCommentDots,
+  FaFileCsv,
+} from "react-icons/fa";
 import styles from "./admin.module.css";
-import { FaEnvelope, FaCalendarAlt, FaRegCommentDots } from "react-icons/fa";
 
 export default function Admin() {
   const [messages, setMessages] = useState([]);
@@ -94,7 +100,6 @@ export default function Admin() {
         appt.id === id ? { ...appt, status: newStatus } : appt
       )
     );
-
     fetch(`http://localhost:5000/api/appointments/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -133,6 +138,7 @@ export default function Admin() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+
           {type === "appointments" && (
             <select
               value={statusFilter}
@@ -145,6 +151,41 @@ export default function Admin() {
               <option value="Completed">Completed</option>
             </select>
           )}
+
+          <CSVLink
+            data={filtered.map((item) => {
+              if (type === "messages")
+                return {
+                  Name: item.name,
+                  Email: item.email,
+                  Message: item.message,
+                  "Submitted At": new Date(item.submitted_at).toLocaleString(),
+                };
+              if (type === "appointments")
+                return {
+                  Name: item.name,
+                  Email: item.email,
+                  Phone: item.phone,
+                  "Preferred Date": item.preferred_date,
+                  "Preferred Time": item.preferred_time,
+                  "Additional Info": item.additional_info || "—",
+                  Status: item.status || "Pending",
+                  "Submitted At": new Date(item.submitted_at).toLocaleString(),
+                };
+              if (type === "feedbacks")
+                return {
+                  Name: item.name,
+                  Email: item.email,
+                  Feedback: item.feedback,
+                  "Submitted At": new Date(item.submitted_at).toLocaleString(),
+                };
+              return {};
+            })}
+            filename={`${type}.csv`}
+            className={styles.exportButton}
+          >
+            <FaFileCsv /> Export CSV
+          </CSVLink>
         </div>
 
         <table className={styles.table}>
