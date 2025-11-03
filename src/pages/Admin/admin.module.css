@@ -195,18 +195,14 @@ mark {
   font-size: 0.9rem;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  /* Tables convert to cards */
-  .table {
-    border: 0;
-    min-width: 100%;
-  }
-
+/* ======= Mobile & Tablet Devices (max-width: 900px) ======= */
+@media (max-width: 900px) {
+  /* Hide table header */
   .table thead {
     display: none;
   }
 
+  /* Table rows as cards */
   .table tbody tr {
     display: block;
     margin-bottom: 15px;
@@ -216,28 +212,29 @@ mark {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   }
 
+  /* Table cells as grid: label | value */
   .table tbody td {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 140px 1fr; /* label fixed width, value takes rest */
     padding: 8px 10px;
-    text-align: left;
     border-bottom: 1px solid #444;
-    flex-wrap: wrap;
+    align-items: start; /* label/value aligned at top */
+    gap: 10px;
+    word-break: break-word; /* wrap long content */
   }
 
   .table tbody td:last-child {
     border-bottom: 0;
   }
 
+  /* Add label from data-label attribute */
   .table tbody td::before {
     content: attr(data-label);
     font-weight: 600;
     color: #aaa;
-    margin-right: 10px;
-    flex: 0 0 120px;
   }
 
-  /* Filter row stack */
+  /* Filter row stack for mobile/tablet */
   .filterRow {
     flex-direction: column;
     gap: 10px;
@@ -248,7 +245,7 @@ mark {
     max-width: 100%;
   }
 
-  /* KPI Cards stack */
+  /* KPI Cards responsive */
   .kpiCard {
     flex: 1 1 100%;
     gap: 12px;
@@ -270,5 +267,51 @@ mark {
   /* Tabs stack */
   .tabs {
     flex-direction: column;
+  }
+}
+
+/* ======= Tablet Specific (601px - 900px) ======= */
+@media (min-width: 601px) and (max-width: 900px) {
+  /* Table cell font adjustment */
+  .table th,
+  .table td {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+
+  /* KPI Cards 2 per row */
+  .kpiCard {
+    flex: 1 1 45%;
+    gap: 15px;
+    padding: 18px;
+  }
+
+  .kpiIcon {
+    font-size: 2rem;
+  }
+
+  .kpiCard h3 {
+    font-size: 1.7rem;
+  }
+
+  .kpiCard p {
+    font-size: 0.9rem;
+  }
+
+  /* Tabs wrap if needed */
+  .tabs {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Filter row 2 per line */
+  .filterRow {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .searchInput,
+  .statusDropdown {
+    max-width: 48%;
   }
 }
