@@ -8,13 +8,13 @@ sudo /opt/lampp/lampp start
 # To stop XAMPP
 sudo /opt/lampp/lampp stop
 
-# To start your backend server 
+# To start backend server locally
 rh-law-website/database_rh_law$ node server.js
 
 # TO STOP ALREADY RUNNING APACHE
 sudo systemctl stop apache2
 
-# To run project simply
+# To run react project simply
 npm start
 
 # To make new database
