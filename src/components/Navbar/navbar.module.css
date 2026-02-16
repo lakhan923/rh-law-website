@@ -18,9 +18,12 @@
   padding: 0.5rem 1rem;
   order: 99; /* ensure it appears last */
   box-sizing: border-box;
+  justify-content: flex-end;
 }
 
 .adminButton {
+  display: block;
+  min-width: 120px;
   padding: 1rem 1rem;
   font-weight: 600;
   border-radius: 6px;
@@ -241,5 +244,20 @@
 
   .logoText {
     font-size: 1rem;
+  }
+
+  .adminButtonContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.75rem 0;
+  }
+
+  .adminButtonContainer .adminButton {
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    min-width: 0;
+    display: block;
   }
 }
