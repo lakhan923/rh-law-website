@@ -144,25 +144,21 @@ function Navbar() {
             </Link>
           </li>
 
-          {!isAdmin && (
-            <li>
-              <button onClick={openLogin} className={styles.ctaButton}>
+          <li className={styles.adminButtonContainer}>
+            {!isAdmin ? (
+              <button onClick={openLogin} className={styles.adminButton}>
                 Admin Login
               </button>
-            </li>
-          )}
-
-          {isAdmin && (
-            <li>
+            ) : (
               <Link
                 to="/admin"
                 onClick={() => setIsMenuOpen(false)}
-                className={styles.ctaButton}
+                className={styles.adminButton}
               >
                 Admin Dashboard
               </Link>
-            </li>
-          )}
+            )}
+          </li>
         </ul>
       </nav>
 
