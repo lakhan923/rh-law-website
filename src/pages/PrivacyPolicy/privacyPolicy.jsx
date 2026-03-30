@@ -166,8 +166,8 @@ function PrivacyPolicy() {
           <ul>
             <li>
               Email:{" "}
-              <a href="mailto:rhlawassociates@gmail.com">
-                rhlawassociates@gmail.com
+              <a href="mailto:info@rhlawassociates.com">
+                info@rhlawassociates.com
               </a>
             </li>
             <li>

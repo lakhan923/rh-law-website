@@ -3,12 +3,13 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
 const app = express();
+const nodemailer = require("nodemailer");
 
-// Middleware
+// -------------------- MIDDLEWARE --------------------
 app.use(cors());
 app.use(express.json()); // Handles JSON requests
 
-// Connect to MariaDB
+// -------------------- DATABASE --------------------
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -24,8 +25,19 @@ db.connect((err) => {
   console.log("Connected to MariaDB");
 });
 
-// -------------------- ROUTES --------------------
+// -------------------- EMAIL TRANSPORTER --------------------
+const transporter = nodemailer.createTransport({
+  host: "smtp.hostinger.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
+// -------------------- ROUTES --------------------
+// Admin login
 app.post("/api/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -38,7 +50,7 @@ app.post("/api/login", (req, res) => {
   return res.status(401).json({ success: false, error: "Invalid credentials" });
 });
 
-// Contact form POST
+// Contact form with email + auto-reply
 app.post("/api/contact", (req, res) => {
   console.log("Received contact data:", req.body);
 
@@ -50,19 +62,41 @@ app.post("/api/contact", (req, res) => {
 
   const sql =
     "INSERT INTO contact_messages (name, email, message) VALUES (?, ?, ?)";
-  db.query(sql, [name, email, message], (err, result) => {
+
+  db.query(sql, [name, email, message], async (err, result) => {
     if (err) {
       console.error("Insert error (contact):", err);
       return res.status(500).json({ error: "Failed to save contact message" });
     }
+
+    try {
+      // Send email to admin
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_USER,
+        subject: "New Contact Message",
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
+      });
+
+      // Send auto-reply to client
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "We received your message",
+        text: `Dear ${name},\n\nThank you for contacting R & H Law Associates & Consultants.\nWe have received your message and will get back to you shortly.\n\nRegards,\nR & H Law Associates`,
+      });
+
+      console.log("Emails sent successfully");
+    } catch (emailErr) {
+      console.error("Error sending emails:", emailErr);
+    }
+
     res.json({ success: true, id: result.insertId });
   });
 });
 
-// Appointment form POST
+// Appointment form
 app.post("/api/appointment", (req, res) => {
-  console.log("Received appointment data:", req.body); // Debug log
-
   const {
     name,
     email,
@@ -72,12 +106,12 @@ app.post("/api/appointment", (req, res) => {
     additional_info,
   } = req.body;
 
-  if (!name || !email || !phone || !preferred_date || !preferred_time) {
+  if (!name || !email || !phone || !preferred_date || !preferred_time)
     return res.status(400).json({ error: "Missing required fields" });
-  }
 
   const sql =
     "INSERT INTO appointments (name, email, phone, preferred_date, preferred_time, additional_info) VALUES (?, ?, ?, ?, ?, ?)";
+
   db.query(
     sql,
     [
@@ -88,35 +122,76 @@ app.post("/api/appointment", (req, res) => {
       preferred_time,
       additional_info || null,
     ],
-    (err, result) => {
+    async (err, result) => {
       if (err) {
-        console.error("Insert error (appointment):", err);
+        console.error("DB insert error (appointment):", err);
         return res.status(500).json({ error: "Failed to save appointment" });
       }
+
+      try {
+        // Email to admin
+        await transporter.sendMail({
+          from: process.env.EMAIL_USER,
+          to: process.env.EMAIL_USER,
+          subject: "New Appointment Request",
+          text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPreferred Date: ${preferred_date}\nPreferred Time: ${preferred_time}\nAdditional Info: ${additional_info || "N/A"}`,
+        });
+
+        // Auto-reply to client
+        await transporter.sendMail({
+          from: process.env.EMAIL_USER,
+          to: email,
+          subject: "Your appointment request received",
+          text: `Dear ${name}, \n\nThank you for requesting an appointment with R & H Law Associates & Consultants. \nWe have received your request for ${preferred_date} at ${preferred_time} and will confirm the schedule shortly. \n\n Regards,\n R & H Law Associates`,
+        });
+
+        console.log("Appointment emails sent successfully");
+      } catch (emailErr) {
+        console.error("Error sending appointment emails:", emailErr);
+      }
+
       res.json({ success: true, id: result.insertId });
-    }
+    },
   );
 });
 
-// POST /api/feedback - Save feedback to database
+// Feedback form
 app.post("/api/feedback", (req, res) => {
-  console.log("Received feedback data:", req.body);
-
   const { name, email, feedback } = req.body;
 
-  if (!name || !email || !feedback) {
-    console.log("Validation failed: Missing fields");
+  if (!name || !email || !feedback)
     return res.status(400).json({ error: "All fields are required" });
-  }
 
-  const sql = "INSERT INTO feedback (name, email, `feedback`) VALUES (?, ?, ?)";
+  const sql = "INSERT INTO feedback (name, email, feedback) VALUES (?, ?, ?)";
 
-  db.query(sql, [name, email, feedback], (err, result) => {
+  db.query(sql, [name, email, feedback], async (err, result) => {
     if (err) {
-      console.error("Error saving feedback:", err);
-      return res.status(500).json({ error: "Database error" });
+      console.error("DB insert error (feedback):", err);
+      return res.status(500).json({ error: "Failed to save feedback" });
     }
-    console.log("Feedback saved with ID:", result.insertId);
+
+    try {
+      // Email to admin
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_USER,
+        subject: "New Feedback Received",
+        text: `Name: ${name}\nEmail: ${email}\nFeedback: ${feedback}`,
+      });
+
+      // Auto-reply to client
+      await transporter.sendMail({
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "Thank you for your feedback",
+        text: `Dear ${name},\n\nThank you for your feedback. We appreciate your time and thoughts.\n\nRegards,\nR & H Law Associates`,
+      });
+
+      console.log("Feedback emails sent successfully");
+    } catch (emailErr) {
+      console.error("Error sending feedback emails:", emailErr);
+    }
+
     res.json({ success: true, id: result.insertId });
   });
 });
@@ -132,7 +207,7 @@ app.get("/api/messages", (req, res) => {
         return res.status(500).json({ error: "Failed to fetch messages" });
       }
       res.json(results);
-    }
+    },
   );
 });
 
@@ -147,7 +222,7 @@ app.get("/api/appointments", (req, res) => {
         return res.status(500).json({ error: "Failed to fetch appointments" });
       }
       res.json(results);
-    }
+    },
   );
 });
 
@@ -162,12 +237,12 @@ app.get("/api/feedback", (req, res) => {
         return res.status(500).json({ error: "Failed to fetch feedbacks" });
       }
       res.json(results);
-    }
+    },
   );
 });
 
 // -------------------- START SERVER --------------------
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });

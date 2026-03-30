@@ -40,10 +40,10 @@ function Footer() {
               <p>
                 <FaEnvelope className={styles.icon} />
                 <a
-                  href="mailto:rhlawassociates@gmail.com"
+                  href="mailto:info@rhlawassociates.com"
                   className={styles.contactLink}
                 >
-                  rhlawassociates@gmail.com
+                  info@rhlawassociates.com
                 </a>
               </p>
               <p>

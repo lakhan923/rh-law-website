@@ -5,6 +5,7 @@ import {
   FaEnvelope,
   FaMapMarkerAlt,
   FaInstagram,
+  FaCalendarCheck,
 } from "react-icons/fa";
 
 function Contact() {
@@ -88,10 +89,10 @@ function Contact() {
             <p>
               <FaEnvelope className={styles.icon} />
               <a
-                href="mailto:rhlawassociates@gmail.com"
+                href="mailto:info@rhlawassociates.com"
                 className={styles.contactLink}
               >
-                rhlawassociates@gmail.com
+                info@rhlawassociates.com
               </a>
             </p>
             <p>
@@ -107,6 +108,17 @@ function Contact() {
                 NPF, Sector O-9
                 <br />
                 Islamabad, Pakistan
+              </a>
+            </p>
+            <p>
+              <FaCalendarCheck className={styles.icon} />
+              <a
+                href="/book"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                Book Appointment
               </a>
             </p>
             <p>
