@@ -67,10 +67,28 @@ app.post("/api/login", (req, res) => {
   });
 });
 
+// email helper functions
+const sendAdminEmail = async ({ subject, text, cc }) => {
+  return transporter.sendMail({
+    from: `"R & H Law Associates" <${process.env.EMAIL_USER}>`,
+    to: "qurratulain.rehman@rhlaw.com",
+    cc: cc || "hareem.hilal@rhlaw.com",
+    subject,
+    text,
+  });
+};
+
+const sendAutoReply = async ({ to, subject, text }) => {
+  return transporter.sendMail({
+    from: process.env.EMAIL_USER,
+    to,
+    subject,
+    text,
+  });
+};
+
 // Contact form with email + auto-reply
 app.post("/api/contact", (req, res) => {
-  console.log("Received contact data:", req.body);
-
   const { name, email, message } = req.body;
 
   if (!name || !email || !message) {
@@ -82,31 +100,26 @@ app.post("/api/contact", (req, res) => {
 
   db.query(sql, [name, email, message], async (err, result) => {
     if (err) {
-      console.error("Insert error (contact):", err);
       return res.status(500).json({ error: "Failed to save contact message" });
     }
 
     try {
       // Send email to admin
-      await transporter.sendMail({
-        from: `"R & H Law Associates" <${process.env.EMAIL_USER}>`,
-        to: "qurratulain.rehman@rhlaw.com",
-        cc: "hareem.hilal@rhlaw.com",
+      await sendAdminEmail({
         subject: "New Contact Message",
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       });
 
       // Send auto-reply to client
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+      await sendAutoReply({
         to: email,
         subject: "We received your message",
         text: `Hi ${name},\n\nThank you for contacting R & H Law Associates & Consultants.\nWe have received your message and will get back to you shortly.\nFor urgent matters, you may contact our office directly. \n\nYours sincerely,\nR & H Law Associates`,
       });
 
-      console.log("Emails sent successfully");
+      console.log("Message sent successfully");
     } catch (emailErr) {
-      console.error("Error sending emails:", emailErr);
+      console.error("Error sending message:", emailErr);
     }
 
     res.json({ success: true, id: result.insertId });
@@ -148,24 +161,21 @@ app.post("/api/appointment", (req, res) => {
 
       try {
         // Email to admin
-        await transporter.sendMail({
-          from: process.env.EMAIL_USER,
-          to: process.env.EMAIL_USER,
+        await sendAdminEmail({
           subject: "New Appointment Request",
           text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nPreferred Date: ${preferred_date}\nPreferred Time: ${preferred_time}\nAdditional Info: ${additional_info || "N/A"}`,
         });
 
         // Auto-reply to client
-        await transporter.sendMail({
-          from: process.env.EMAIL_USER,
+        await sendAutoReply({
           to: email,
-          subject: "Your appointment request received",
+          subject: "We received your appointment request",
           text: `Hi ${name}, \n\nThank you for booking an appointment with R & H Law Associates & Consultants. \nWe have received your request for ${preferred_date} at ${preferred_time} and will confirm the schedule shortly. \n\n Yours sincerely,\n R & H Law Associates`,
         });
 
-        console.log("Appointment emails sent successfully");
+        console.log("Appointment email sent successfully");
       } catch (emailErr) {
-        console.error("Error sending appointment emails:", emailErr);
+        console.error("Error sending appointment email:", emailErr);
       }
 
       res.json({ success: true, id: result.insertId });
@@ -190,24 +200,21 @@ app.post("/api/feedback", (req, res) => {
 
     try {
       // Email to admin
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+      await sendAdminEmail({
         subject: "New Feedback Received",
         text: `Name: ${name}\nEmail: ${email}\nFeedback: ${feedback}`,
       });
 
       // Auto-reply to client
-      await transporter.sendMail({
-        from: process.env.EMAIL_USER,
+      await sendAutoReply({
         to: email,
         subject: "Thank you for your feedback",
-        text: `Hi ${name},\n\nThank you for your feedback. We appreciate your time and thoughts.\n\nYours sincerely,\nR & H Law Associates`,
+        text: `Hi ${name},\n\nThank you for your feedback. We truely appreciate your time and thoughts.\n\nYours sincerely,\nR & H Law Associates`,
       });
 
-      console.log("Feedback emails sent successfully");
+      console.log("Feedback email sent successfully");
     } catch (emailErr) {
-      console.error("Error sending feedback emails:", emailErr);
+      console.error("Error sending feedback email:", emailErr);
     }
 
     res.json({ success: true, id: result.insertId });
