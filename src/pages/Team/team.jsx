@@ -1,68 +1,92 @@
-import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import partnersData from "../../data/partnersData.json";
 import styles from "./team.module.css";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 export default function Team() {
-  const location = useLocation();
+  const [active, setActive] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (location.hash) {
-      const id = location.hash.replace("#", "");
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [location]);
+    const check = () => setIsMobile(window.innerWidth <= 600);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const activePerson = partnersData.find((p) => p.id === active);
 
   return (
     <div className={styles.pageWrapper}>
-      {/* Full-page background image */}
-      <img
-        src="/assets/team-bg.jpg"
-        alt="Background"
-        className={styles.backgroundImage}
-        loading="eager"
-      />
-
       <main className={styles.main}>
-        <h1 className={styles.pageTitle}>Our Founding Partners</h1>
+        <h1 className={styles.pageTitle}>Our Team</h1>
 
-        {partnersData.map(({ id, name, title, description, image }) => (
-          <section
-            key={id}
-            id={id}
-            className={styles["partner-profile"]}
-            aria-labelledby={`${id}-label`}
-          >
-            <header className={styles["partner-header"]}>
-              <div className={styles["partner-photo-wrapper"]}>
-                {id === "hareem" ? (
-                  <FaUserCircle className={styles.partnerIcon} />
-                ) : (
-                  <img
-                    src={image}
-                    alt={`Portrait of ${name}`}
-                    className={styles["partner-photo"]}
-                  />
+        <p className={styles.subText}>
+          Meet the attorneys and professionals guiding our clients with
+          integrity, expertise, and commitment.
+        </p>
+
+        <div className={styles.cardRow}>
+          {partnersData.map((p, index) => {
+            const isActive = active === p.id;
+
+            return (
+              <div
+                key={p.id}
+                className={`${styles.card} ${
+                  isActive ? styles.activeCard : ""
+                }`}
+                onClick={() => setActive(isActive ? null : p.id)}
+              >
+                <div className={styles.image}>
+                  {p.id === "hareem" ? (
+                    <FaUser className={styles.icon} />
+                  ) : (
+                    <img src={p.image} alt={p.name} />
+                  )}
+                </div>
+
+                <h3>{p.name}</h3>
+                <p>{index < 2 ? "Founding Partner" : "Consultant"}</p>
+
+                {/* READ MORE INDICATOR */}
+                {!isActive && (
+                  <span className={styles.readMore}>Read more</span>
+                )}
+
+                {isActive && (
+                  <span className={styles.readMoreActive}>Click to close</span>
+                )}
+
+                {/* MOBILE DETAIL INSIDE CARD */}
+                {isMobile && isActive && (
+                  <div className={styles.mobileDetail}>
+                    <h4>{p.title}</h4>
+                    <ul>
+                      {p.description.map((d, i) => (
+                        <li key={i}>{d}</li>
+                      ))}
+                    </ul>
+                  </div>
                 )}
               </div>
-              <div>
-                <h2 id={`${id}-label`} className={styles["partner-name"]}>
-                  {name}
-                </h2>
-                <p className={styles["partner-title"]}>{title}</p>
-              </div>
-            </header>
-            <ul className={styles["partner-description-list"]}>
-              {description.map((point, index) => (
-                <li key={index}>{point}</li>
+            );
+          })}
+        </div>
+
+        {/* DESKTOP DETAIL BELOW GRID */}
+        {!isMobile && activePerson && (
+          <div className={styles.detailBox}>
+            <h2>{activePerson.name}</h2>
+            <h4>{activePerson.title}</h4>
+
+            <ul>
+              {activePerson.description.map((d, i) => (
+                <li key={i}>{d}</li>
               ))}
             </ul>
-          </section>
-        ))}
+          </div>
+        )}
       </main>
     </div>
   );
