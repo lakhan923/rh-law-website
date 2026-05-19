@@ -13,35 +13,6 @@
   color: white;
 }
 
-.adminButtonContainer {
-  width: 100%;
-  padding: 0.5rem 1rem;
-  order: 99; /* ensure it appears last */
-  box-sizing: border-box;
-  justify-content: flex-end;
-}
-
-.adminButton {
-  display: block;
-  min-width: 120px;
-  padding: 1rem 1rem;
-  font-weight: 600;
-  border-radius: 6px;
-  font-size: 1rem;
-  text-decoration: none;
-  background-color: #f4ca23;
-  color: #000;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  display: inline-block;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  text-align: center;
-}
-
-.adminButton:hover {
-  background-color: #ffcc00;
-}
-
 .logoContainer {
   display: flex;
   align-items: center;
@@ -130,69 +101,6 @@
   color: #ffffff;
 }
 
-/* ========== Admin dashboard popup ========== */
-/* Modal overlay */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-
-/* Modal container */
-.modal {
-  background: #fff;
-  width: min(92vw, 360px);
-  border-radius: 12px;
-  padding: 20px 20px 16px;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Close button */
-.closeBtn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  line-height: 1;
-}
-
-/* Input fields */
-.input {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-}
-
-/* Submit button */
-.submitBtn {
-  width: 100%;
-  padding: 10px 12px;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  background: #1e3a8a;
-  color: #fff;
-}
-
-/* Error text */
-.error {
-  margin-bottom: 0.75rem;
-  font-size: 0.9rem;
-  color: #b91c1c;
-}
-
 /* ========== Responsive ========== */
 @media (max-width: 768px) {
   .menuBtn {
@@ -212,7 +120,9 @@
     border-bottom-right-radius: 8px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     max-height: 0;
-    transition: max-height 0.4s ease-in-out, padding 0.3s ease;
+    transition:
+      max-height 0.4s ease-in-out,
+      padding 0.3s ease;
   }
 
   .menuItemsOpen {
@@ -244,20 +154,5 @@
 
   .logoText {
     font-size: 1rem;
-  }
-
-  .adminButtonContainer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 0.75rem 0;
-  }
-
-  .adminButtonContainer .adminButton {
-    width: 100%;
-    text-align: center;
-    padding: 1rem;
-    min-width: 0;
-    display: block;
   }
 }

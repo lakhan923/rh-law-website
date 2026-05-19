@@ -12,6 +12,7 @@ import Book from "./pages/BookAppointment/book";
 import PracticeDetail from "./pages/PracticeAreas/practiceDetail";
 import PrivacyPolicy from "./pages/PrivacyPolicy/privacyPolicy";
 import Admin from "./pages/Admin/admin";
+import AdminLogin from "./pages/AdminLogin/AdminLogin";
 function App() {
   return (
     <>
@@ -27,6 +28,7 @@ function App() {
           <Route path="/practice/:slug" element={<PracticeDetail />} />
           <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/login-admin" element={<AdminLogin />} />
         </Routes>
       </div>
       <Footer />
