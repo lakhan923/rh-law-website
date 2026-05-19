@@ -88,12 +88,21 @@ function Contact() {
             </p>
             <p>
               <FaEnvelope className={styles.icon} />
-              <a
-                href="mailto:info@rhlawassociates.com"
-                className={styles.contactLink}
-              >
-                info@rhlawassociates.com
-              </a>
+              <span className={styles.emailColumn}>
+                <a
+                  href="mailto:qurratulain.rehman@rhlaw.com"
+                  className={styles.contactLink}
+                >
+                  qurratulain.rehman@rhlaw.com
+                </a>
+
+                <a
+                  href="mailto:hareem.hilal@rhlaw.com"
+                  className={styles.contactLink}
+                >
+                  hareem.hilal@rhlaw.com
+                </a>
+              </span>
             </p>
             <p>
               <FaMapMarkerAlt className={styles.icon} />

@@ -31,10 +31,10 @@ export default function AdminLogin() {
         return;
       }
 
-      localStorage.setItem("adminAuthed", "1");
+      localStorage.setItem("token", data.token);
       localStorage.setItem("adminLoginTime", Date.now().toString());
 
-      navigate("/admin");
+      navigate("/admin", { replace: true });
     } catch (err) {
       setError("Server error. Please try again.");
     }

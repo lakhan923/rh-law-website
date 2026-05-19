@@ -38,15 +38,6 @@ function Footer() {
                 </a>
               </p>
               <p>
-                <FaEnvelope className={styles.icon} />
-                <a
-                  href="mailto:info@rhlawassociates.com"
-                  className={styles.contactLink}
-                >
-                  info@rhlawassociates.com
-                </a>
-              </p>
-              <p>
                 <FaUserClock className={styles.icon} />
                 <strong>Contact Hours:</strong> Mon – Fri: 9:00 AM – 5:00 PM
               </p>
@@ -83,6 +74,31 @@ function Footer() {
                 </li>
               </ul>
             </nav>
+          </div>
+
+          {/* Column 3 — Partners */}
+          <div className={styles.rightColumn}>
+            <div className={styles.followUsSection}>
+              <h4 className={styles.foundersTitle}>Partners</h4>
+
+              <div className={styles.partnerLinks}>
+                <a
+                  href="mailto:qurratulain.rehman@rhlaw.com"
+                  className={styles.partnerLink}
+                >
+                  <FaEnvelope className={styles.icon} />
+                  <span>Qurratulain Rehman</span>
+                </a>
+
+                <a
+                  href="mailto:hareem.hilal@rhlaw.com"
+                  className={styles.partnerLink}
+                >
+                  <FaEnvelope className={styles.icon} />
+                  <span>Hareem Hilal</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Right Column: Follow Us */}

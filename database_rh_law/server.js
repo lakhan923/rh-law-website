@@ -4,6 +4,7 @@ const cors = require("cors");
 const mysql = require("mysql2");
 const app = express();
 const nodemailer = require("nodemailer");
+const jwt = require("jsonwebtoken");
 
 // -------------------- MIDDLEWARE --------------------
 app.use(cors());
@@ -45,9 +46,25 @@ app.post("/api/login", (req, res) => {
     username === process.env.ADMIN_USERNAME &&
     password === process.env.ADMIN_PASSWORD
   ) {
-    return res.json({ success: true });
+    const token = jwt.sign(
+      {
+        username,
+        role: "admin",
+      },
+      process.env.JWT_SECRET || "secret_key",
+      { expiresIn: "2h" },
+    );
+
+    return res.json({
+      success: true,
+      token: token,
+    });
   }
-  return res.status(401).json({ success: false, error: "Invalid credentials" });
+
+  return res.status(401).json({
+    success: false,
+    error: "Invalid credentials",
+  });
 });
 
 // Contact form with email + auto-reply
@@ -72,8 +89,9 @@ app.post("/api/contact", (req, res) => {
     try {
       // Send email to admin
       await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+        from: `"R & H Law Associates" <${process.env.EMAIL_USER}>`,
+        to: "qurratulain.rehman@rhlaw.com",
+        cc: "hareem.hilal@rhlaw.com",
         subject: "New Contact Message",
         text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       });
@@ -83,7 +101,7 @@ app.post("/api/contact", (req, res) => {
         from: process.env.EMAIL_USER,
         to: email,
         subject: "We received your message",
-        text: `Dear ${name},\n\nThank you for contacting R & H Law Associates & Consultants.\nWe have received your message and will get back to you shortly.\n\nRegards,\nR & H Law Associates`,
+        text: `Hi ${name},\n\nThank you for contacting R & H Law Associates & Consultants.\nWe have received your message and will get back to you shortly.\nFor urgent matters, you may contact our office directly. \n\nYours sincerely,\nR & H Law Associates`,
       });
 
       console.log("Emails sent successfully");
@@ -142,7 +160,7 @@ app.post("/api/appointment", (req, res) => {
           from: process.env.EMAIL_USER,
           to: email,
           subject: "Your appointment request received",
-          text: `Dear ${name}, \n\nThank you for requesting an appointment with R & H Law Associates & Consultants. \nWe have received your request for ${preferred_date} at ${preferred_time} and will confirm the schedule shortly. \n\n Regards,\n R & H Law Associates`,
+          text: `Hi ${name}, \n\nThank you for booking an appointment with R & H Law Associates & Consultants. \nWe have received your request for ${preferred_date} at ${preferred_time} and will confirm the schedule shortly. \n\n Yours sincerely,\n R & H Law Associates`,
         });
 
         console.log("Appointment emails sent successfully");
@@ -184,7 +202,7 @@ app.post("/api/feedback", (req, res) => {
         from: process.env.EMAIL_USER,
         to: email,
         subject: "Thank you for your feedback",
-        text: `Dear ${name},\n\nThank you for your feedback. We appreciate your time and thoughts.\n\nRegards,\nR & H Law Associates`,
+        text: `Hi ${name},\n\nThank you for your feedback. We appreciate your time and thoughts.\n\nYours sincerely,\nR & H Law Associates`,
       });
 
       console.log("Feedback emails sent successfully");

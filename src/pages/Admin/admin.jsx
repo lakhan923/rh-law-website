@@ -13,105 +13,166 @@ export default function Admin() {
   const [messages, setMessages] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [feedbacks, setFeedbacks] = useState([]);
+
   const [activeTab, setActiveTab] = useState("messages");
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
+
   const navigate = useNavigate();
 
-  // Guard route
+  /* =========================
+     AUTH GUARD (JWT SAFE)
+  ========================== */
   useEffect(() => {
-    if (localStorage.getItem("adminAuthed") !== "1") {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
       navigate("/", { replace: true });
     }
   }, [navigate]);
 
-  // Fetch data
-  useEffect(() => {
-    if (localStorage.getItem("adminAuthed") !== "1") return;
+  /* =========================
+     SAFE STRING HELPERS
+  ========================== */
+  const safe = (v) => (v == null ? "" : String(v));
 
-    fetch("http://localhost:5000/api/messages")
-      .then((res) => res.json())
-      .then((data) => setMessages(Array.isArray(data) ? data : []))
-      .catch(console.error);
+  const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-    fetch("http://localhost:5000/api/appointments")
-      .then((res) => res.json())
-      .then((data) => setAppointments(Array.isArray(data) ? data : []))
-      .catch(console.error);
+  const highlightText = (text, query) => {
+    const t = safe(text);
+    const q = safe(query).trim();
 
-    fetch("http://localhost:5000/api/feedback")
-      .then((res) => res.json())
-      .then((data) => setFeedbacks(Array.isArray(data) ? data : []))
-      .catch(console.error);
-  }, []);
+    if (!q) return t;
 
-  // Highlight search matches
-  const highlight = (text) => {
-    if (!search) return text;
-    const regex = new RegExp(`(${search})`, "gi");
-    return String(text).replace(regex, (match) => `<mark>${match}</mark>`);
+    const regex = new RegExp(`(${escapeRegex(q)})`, "gi");
+
+    return t
+      .split(regex)
+      .map((part, i) =>
+        part.toLowerCase() === q.toLowerCase() ? (
+          <mark key={i}>{part}</mark>
+        ) : (
+          part
+        ),
+      );
   };
 
-  // Filter data
+  /* =========================
+     DATA FETCH (NO DEP WARNINGS)
+  ========================== */
+  useEffect(() => {
+    const loadData = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) return;
+
+      try {
+        const fetchWithAuth = async (url) => {
+          const res = await fetch(url, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!res.ok) throw new Error("API error");
+          return res.json();
+        };
+
+        const [msg, appt, fb] = await Promise.all([
+          fetchWithAuth("http://localhost:5000/api/messages"),
+          fetchWithAuth("http://localhost:5000/api/appointments"),
+          fetchWithAuth("http://localhost:5000/api/feedback"),
+        ]);
+
+        setMessages(Array.isArray(msg) ? msg : []);
+        setAppointments(Array.isArray(appt) ? appt : []);
+        setFeedbacks(Array.isArray(fb) ? fb : []);
+      } catch (err) {
+        console.error("Failed to load admin data:", err);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  /* =========================
+     STATUS UPDATE (SECURE)
+  ========================== */
+  const handleStatusChange = async (id, newStatus) => {
+    const token = localStorage.getItem("token");
+
+    setAppointments((prev) =>
+      prev.map((a) => (a.id === id ? { ...a, status: newStatus } : a)),
+    );
+
+    try {
+      await fetch(`http://localhost:5000/api/appointments/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ status: newStatus }),
+      });
+    } catch (err) {
+      console.error("Failed to update status:", err);
+    }
+  };
+
+  /* =========================
+     FILTER LOGIC
+  ========================== */
   const filterData = (data, type) => {
     if (!Array.isArray(data)) return [];
+
     const term = search.toLowerCase();
 
     if (type === "messages") {
       return data.filter(
-        (item) =>
-          item.name.toLowerCase().includes(term) ||
-          item.email.toLowerCase().includes(term) ||
-          item.message.toLowerCase().includes(term)
+        (i) =>
+          safe(i.name).toLowerCase().includes(term) ||
+          safe(i.email).toLowerCase().includes(term) ||
+          safe(i.message).toLowerCase().includes(term),
       );
     }
 
     if (type === "appointments") {
-      return data.filter((item) => {
-        const statusMatch =
-          statusFilter === "All" || item.status === statusFilter;
+      return data.filter((i) => {
+        const status = safe(i.status);
+        const statusMatch = statusFilter === "All" || status === statusFilter;
+
         return (
           statusMatch &&
-          (item.name.toLowerCase().includes(term) ||
-            item.email.toLowerCase().includes(term) ||
-            item.phone.toLowerCase().includes(term) ||
-            (item.additional_info || "").toLowerCase().includes(term) ||
-            (item.status || "").toLowerCase().includes(term))
+          (safe(i.name).toLowerCase().includes(term) ||
+            safe(i.email).toLowerCase().includes(term) ||
+            safe(i.phone).toLowerCase().includes(term) ||
+            safe(i.additional_info).toLowerCase().includes(term) ||
+            status.toLowerCase().includes(term))
         );
       });
     }
 
     if (type === "feedbacks") {
       return data.filter(
-        (item) =>
-          item.name.toLowerCase().includes(term) ||
-          item.email.toLowerCase().includes(term) ||
-          item.feedback.toLowerCase().includes(term)
+        (i) =>
+          safe(i.name).toLowerCase().includes(term) ||
+          safe(i.email).toLowerCase().includes(term) ||
+          safe(i.feedback).toLowerCase().includes(term),
       );
     }
 
     return [];
   };
 
-  // Handle status change
-  const handleStatusChange = (id, newStatus) => {
-    setAppointments((prev) =>
-      prev.map((appt) =>
-        appt.id === id ? { ...appt, status: newStatus } : appt
-      )
-    );
-    fetch(`http://localhost:5000/api/appointments/${id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: newStatus }),
-    }).catch(console.error);
-  };
-
-  // Render Table
+  /* =========================
+     TABLE RENDER
+  ========================== */
   const renderTable = (data, type) => {
     const filtered = filterData(data, type);
-    if (!filtered.length)
+
+    if (!filtered.length) {
       return <p className={styles.empty}>No {type} found</p>;
+    }
 
     const columns = {
       messages: ["Name", "Email", "Message", "Submitted At"],
@@ -128,15 +189,27 @@ export default function Admin() {
       feedbacks: ["Name", "Email", "Feedback", "Submitted At"],
     };
 
+    const exportData = filtered.map((i) => ({
+      Name: i.name,
+      Email: i.email,
+      Message: i.message || i.feedback,
+      Phone: i.phone,
+      "Preferred Date": i.preferred_date,
+      "Preferred Time": i.preferred_time,
+      "Additional Info": i.additional_info || "—",
+      Status: i.status || "Pending",
+      "Submitted At": new Date(i.submitted_at).toLocaleString(),
+    }));
+
     return (
       <div className={styles.tableWrapper}>
+        {/* FILTER BAR */}
         <div className={styles.filterRow}>
           <input
-            type="text"
-            placeholder="Search..."
-            className={styles.searchInput}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
+            placeholder="Search..."
+            className={styles.searchInput}
           />
 
           {type === "appointments" && (
@@ -145,7 +218,7 @@ export default function Admin() {
               onChange={(e) => setStatusFilter(e.target.value)}
               className={styles.statusDropdown}
             >
-              <option value="All">All Status</option>
+              <option value="All">All</option>
               <option value="Pending">Pending</option>
               <option value="Confirmed">Confirmed</option>
               <option value="Completed">Completed</option>
@@ -153,138 +226,65 @@ export default function Admin() {
           )}
 
           <CSVLink
-            data={filtered.map((item) => {
-              if (type === "messages")
-                return {
-                  Name: item.name,
-                  Email: item.email,
-                  Message: item.message,
-                  "Submitted At": new Date(item.submitted_at).toLocaleString(),
-                };
-              if (type === "appointments")
-                return {
-                  Name: item.name,
-                  Email: item.email,
-                  Phone: item.phone,
-                  "Preferred Date": item.preferred_date,
-                  "Preferred Time": item.preferred_time,
-                  "Additional Info": item.additional_info || "—",
-                  Status: item.status || "Pending",
-                  "Submitted At": new Date(item.submitted_at).toLocaleString(),
-                };
-              if (type === "feedbacks")
-                return {
-                  Name: item.name,
-                  Email: item.email,
-                  Feedback: item.feedback,
-                  "Submitted At": new Date(item.submitted_at).toLocaleString(),
-                };
-              return {};
-            })}
+            data={exportData}
             filename={`${type}.csv`}
             className={styles.exportButton}
           >
-            <FaFileCsv /> Export CSV
+            <FaFileCsv /> Export
           </CSVLink>
         </div>
 
+        {/* TABLE */}
         <table className={styles.table}>
           <thead>
             <tr>
-              {columns[type].map((col) => (
-                <th key={col}>{col}</th>
+              {columns[type].map((c) => (
+                <th key={c}>{c}</th>
               ))}
             </tr>
           </thead>
+
           <tbody>
             {filtered.map((item) => (
               <tr key={item.id}>
+                <td>{highlightText(item.name, search)}</td>
+                <td>{highlightText(item.email, search)}</td>
+
                 {type === "messages" && (
                   <>
-                    <td
-                      data-label="Name"
-                      dangerouslySetInnerHTML={{ __html: highlight(item.name) }}
-                    />
-                    <td
-                      data-label="Email"
-                      dangerouslySetInnerHTML={{
-                        __html: highlight(item.email),
-                      }}
-                    />
-                    <td
-                      data-label="Message"
-                      dangerouslySetInnerHTML={{
-                        __html: highlight(item.message),
-                      }}
-                    />
-                    <td data-label="Submitted At">
-                      {new Date(item.submitted_at).toLocaleString()}
-                    </td>
+                    <td>{highlightText(item.message, search)}</td>
+                    <td>{new Date(item.submitted_at).toLocaleString()}</td>
                   </>
                 )}
+
                 {type === "appointments" && (
                   <>
-                    <td
-                      data-label="Name"
-                      dangerouslySetInnerHTML={{ __html: highlight(item.name) }}
-                    />
-                    <td
-                      data-label="Email"
-                      dangerouslySetInnerHTML={{
-                        __html: highlight(item.email),
-                      }}
-                    />
-                    <td data-label="Phone">{item.phone}</td>
-                    <td data-label="Preferred Date">{item.preferred_date}</td>
-                    <td data-label="Preferred Time">{item.preferred_time}</td>
-                    <td data-label="Additional Info">
-                      {item.additional_info || "—"}
-                    </td>
-                    <td data-label="Status">
+                    <td>{safe(item.phone)}</td>
+                    <td>{safe(item.preferred_date)}</td>
+                    <td>{safe(item.preferred_time)}</td>
+                    <td>{safe(item.additional_info) || "—"}</td>
+
+                    <td>
                       <select
                         value={item.status || "Pending"}
                         onChange={(e) =>
                           handleStatusChange(item.id, e.target.value)
                         }
-                        className={`${styles.badge} ${
-                          item.status === "Pending"
-                            ? styles.pending
-                            : item.status === "Confirmed"
-                            ? styles.confirmed
-                            : styles.completed
-                        }`}
                       >
-                        <option value="Pending">Pending</option>
-                        <option value="Confirmed">Confirmed</option>
-                        <option value="Completed">Completed</option>
+                        <option>Pending</option>
+                        <option>Confirmed</option>
+                        <option>Completed</option>
                       </select>
                     </td>
-                    <td data-label="Submitted At">
-                      {new Date(item.submitted_at).toLocaleString()}
-                    </td>
+
+                    <td>{new Date(item.submitted_at).toLocaleString()}</td>
                   </>
                 )}
+
                 {type === "feedbacks" && (
                   <>
-                    <td
-                      data-label="Name"
-                      dangerouslySetInnerHTML={{ __html: highlight(item.name) }}
-                    />
-                    <td
-                      data-label="Email"
-                      dangerouslySetInnerHTML={{
-                        __html: highlight(item.email),
-                      }}
-                    />
-                    <td
-                      data-label="Feedback"
-                      dangerouslySetInnerHTML={{
-                        __html: highlight(item.feedback),
-                      }}
-                    />
-                    <td data-label="Submitted At">
-                      {new Date(item.submitted_at).toLocaleString()}
-                    </td>
+                    <td>{highlightText(item.feedback, search)}</td>
+                    <td>{new Date(item.submitted_at).toLocaleString()}</td>
                   </>
                 )}
               </tr>
@@ -295,53 +295,52 @@ export default function Admin() {
     );
   };
 
+  /* =========================
+     UI
+  ========================== */
   return (
     <div className={styles.adminContainer}>
-      {/* KPI Cards */}
+      {/* KPI */}
       <div className={styles.kpiContainer}>
         <div className={styles.kpiCard}>
-          <FaEnvelope className={styles.kpiIcon} />
-          <div>
-            <h3>{messages.length}</h3>
-            <p>Messages</p>
-          </div>
+          <FaEnvelope />
+          <h3>{messages.length}</h3>
+          <p>Messages</p>
         </div>
+
         <div className={styles.kpiCard}>
-          <FaCalendarAlt className={styles.kpiIcon} />
-          <div>
-            <h3>{appointments.length}</h3>
-            <p>Appointments</p>
-          </div>
+          <FaCalendarAlt />
+          <h3>{appointments.length}</h3>
+          <p>Appointments</p>
         </div>
+
         <div className={styles.kpiCard}>
-          <FaRegCommentDots className={styles.kpiIcon} />
-          <div>
-            <h3>{feedbacks.length}</h3>
-            <p>Feedbacks</p>
-          </div>
+          <FaRegCommentDots />
+          <h3>{feedbacks.length}</h3>
+          <p>Feedbacks</p>
         </div>
       </div>
 
-      {/* Tabs */}
+      {/* TABS */}
       <div className={styles.tabs}>
-        {["messages", "appointments", "feedbacks"].map((tab) => (
+        {["messages", "appointments", "feedbacks"].map((t) => (
           <button
-            key={tab}
-            className={`${styles.tabButton} ${
-              activeTab === tab ? styles.activeTab : ""
-            }`}
+            key={t}
             onClick={() => {
-              setActiveTab(tab);
+              setActiveTab(t);
               setSearch("");
               setStatusFilter("All");
             }}
+            className={`${styles.tabButton} ${
+              activeTab === t ? styles.activeTab : ""
+            }`}
           >
-            {tab.charAt(0).toUpperCase() + tab.slice(1)}
+            {t}
           </button>
         ))}
       </div>
 
-      {/* Tables */}
+      {/* TABLES */}
       {activeTab === "messages" && renderTable(messages, "messages")}
       {activeTab === "appointments" &&
         renderTable(appointments, "appointments")}

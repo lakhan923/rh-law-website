@@ -20,7 +20,7 @@
   flex-wrap: wrap;
   gap: 2rem;
   margin-bottom: 2rem;
-  align-items: flex-start; 
+  align-items: flex-start;
 }
 
 /* Align middle and right column headings with each other */
@@ -28,16 +28,16 @@
 .rightColumn {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; 
+  justify-content: flex-start;
 }
 
 /* add spacing from top so headings match visually */
 .middleColumn {
-  margin-top: 0.3rem; 
+  margin-top: 0.3rem;
 }
 
 .rightColumn {
-  margin-top: 0.3rem; 
+  margin-top: 0.3rem;
 }
 
 /* Contact Info */
@@ -97,6 +97,43 @@
   color: #f7f4e9;
 }
 
+/* PARTNERS */
+.partnerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.partnerLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0f0d0d;
+  text-decoration: none;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.partnerLink:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.partnerLink svg {
+  font-size: 1.3rem;
+  color: #0f0d0d;
+  transition: color 0.3s ease;
+}
+
+.partnerLink:hover svg {
+  color: #ffffff;
+}
+
+
+
 /* Follow Us */
 .followUsSection {
   display: flex;
@@ -109,7 +146,7 @@
   font-size: 1.1rem;
   font-weight: 600;
   color: #0d0d0f;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .socialLinks {
@@ -126,7 +163,9 @@
   font-weight: 500;
   color: #0f0d0d;
   text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
 .socialLinks a:hover {
