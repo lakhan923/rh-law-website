@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 import QuoteCarousel from "./quote";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaArrowRight } from "react-icons/fa";
 
 function Home() {
   return (
@@ -32,6 +32,7 @@ function Home() {
       {/* Professional Profiles */}
       <section className={styles.profileSection}>
         <h2 className={styles.sectionTitle}>Meet Our Founding Partners</h2>
+
         <QuoteCarousel />
 
         <div className={styles.profileGrid}>
@@ -43,14 +44,19 @@ function Home() {
                 alt="Qurrat Ul Ain Rehman"
               />
             </div>
+
             <h3>Ms. Qurrat Ul Ain Rehman</h3>
+
             <p className={styles.profileRole}>Founding Partner</p>
-            <p>
+
+            <p className={styles.profileDescription}>
               Ms. Qurrat Ul Ain Rehman is a seasoned legal professional with
               over 11 years of advocacy and litigation experience.
             </p>
+
             <Link to="/team#qurrat" className={styles.readMore}>
-              Read More →
+              Read More
+              <FaArrowRight />
             </Link>
           </div>
 
@@ -59,15 +65,20 @@ function Home() {
             <div className={styles.profileIcon}>
               <FaUserCircle />
             </div>
+
             <h3>Ms. Hareem Hilal</h3>
+
             <p className={styles.profileRole}>Founding Partner</p>
-            <p>
+
+            <p className={styles.profileDescription}>
               Ms. Hareem Hilal is a legally trained academic and legal
               consultant with a robust background in civil law and
               constitutional law.
             </p>
+
             <Link to="/team#hareem" className={styles.readMore}>
-              Read More →
+              Read More
+              <FaArrowRight />
             </Link>
           </div>
         </div>

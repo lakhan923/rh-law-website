@@ -3,26 +3,30 @@ import styles from "./book.module.css";
 
 const Book = () => {
   return (
-    // Main Content Section
     <section className={styles.container}>
+      {/* Background */}
       <img
         src="/assets/book_appointment.jpg"
-        alt="Hero background"
+        alt="background"
         className={styles.heroImage}
-        loading="eager"
       />
-      <div className={styles["container-time"]}>
-        <h2>Contact Hours</h2>
-        <h3 className={styles["heading-days"]}>Monday - Friday</h3>
-        <p>9:00 AM – 5:00 PM </p>
-        <hr />
 
-        <h4 className={styles["heading-phone"]}>Call Us: +92 336 5374302</h4>
+      {/* LEFT */}
+      <div className={styles.leftPanel}>
+        <h2>Contact Hours</h2>
+
+        <h3 className={styles.days}>Mon - Fri</h3>
+        <p className={styles.text}>9:00 AM - 5:00 PM</p>
+
+        <div className={styles.divider} />
+
+        <h4 className={styles.phone}>+92 336 5374302</h4>
       </div>
 
-      <div id="book-appointment">
-        <h2>Book an Appointment</h2>
-        <p>
+      {/* RIGHT */}
+      <div className={styles.rightPanel}>
+        <h2 className={styles.title}>Book Appointment</h2>
+        <p className={styles.subtitle}>
           Schedule a consultation or meeting with me at your convenience. Please
           fill out the form below, and I'll get back to you with available time
           slots.
@@ -58,43 +62,39 @@ const Book = () => {
             }
           }}
         >
-          <div className={styles["form-group"]}>
-            <label htmlFor="name">Name:</label>
-            <input type="text" id="name" name="name" required />
+          <div className={styles.group}>
+            <label>Name</label>
+            <input name="name" placeholder="Full Name" />
           </div>
-          <div className={styles["form-group"]}>
-            <label htmlFor="email">Email:</label>
-            <input type="email" id="email" name="email" required />
+
+          <div className={styles.group}>
+            <label>Email</label>
+            <input name="email" placeholder="Email Address" />
           </div>
-          <div className={styles["form-group"]}>
-            <label htmlFor="phone">Phone Number:</label>
-            <input type="tel" id="phone" name="phone" required />
+
+          <div className={styles.group}>
+            <label>Phone</label>
+            <input name="phone" placeholder="Phone Number" />
           </div>
-          <div className={styles["form-group"]}>
-            <label htmlFor="preferred-date">Preferred Date:</label>
-            <input
-              type="date"
-              id="preferred-date"
-              name="preferred-date"
-              required
-            />
+
+          <div className={styles.row}>
+            <div className={styles.group}>
+              <label>Date</label>
+              <input type="date" name="preferred_date" />
+            </div>
+
+            <div className={styles.group}>
+              <label>Time</label>
+              <input type="time" name="preferred_time" />
+            </div>
           </div>
-          <div className={styles["form-group"]}>
-            <label htmlFor="preferred-time">Preferred Time:</label>
-            <input
-              type="time"
-              id="preferred-time"
-              name="preferred-time"
-              required
-            />
+
+          <div className={styles.group}>
+            <label>Message</label>
+            <textarea rows="4" />
           </div>
-          <div className={styles["form-group"]}>
-            <label htmlFor="message">Additional Information:</label>
-            <textarea id="message" name="message" rows="4"></textarea>
-          </div>
-          <button type="submit" className={styles.btn}>
-            Submit Appointment Request
-          </button>
+
+          <button className={styles.button}>Confirm Booking</button>
         </form>
       </div>
     </section>

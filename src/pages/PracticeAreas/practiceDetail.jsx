@@ -4,7 +4,7 @@ import areaList from "../../data/practiceAreaData.json";
 import styles from "./practiceDetail.module.css";
 
 // Static JSON imports
-import civilLaw from "../../data/practiceDetail/ civil-constitutional-law.json";
+import civilLaw from "../../data/practiceDetail/civil-constitutional-law.json";
 import familyLaw from "../../data/practiceDetail/family-law.json";
 import corporateLaw from "../../data/practiceDetail/corporate-commercial-law.json";
 import humanRights from "../../data/practiceDetail/human-rights-law.json";
@@ -12,6 +12,7 @@ import publicIntl from "../../data/practiceDetail/public-international-law.json"
 import serviceLaw from "../../data/practiceDetail/service-employment-law.json";
 import consultancy from "../../data/practiceDetail/legal-consultancy.json";
 import immigration from "../../data/practiceDetail/immigration-law.json";
+
 // Mapping slug to imported JSON data
 const detailsMap = {
   "civil-constitutional-law": civilLaw,
@@ -26,10 +27,10 @@ const detailsMap = {
 
 export default function PracticeDetail() {
   const { slug } = useParams();
-  const area = areaList.find((item) => item.slug === slug);
   const details = detailsMap[slug];
+  const area = areaList.find((item) => item.slug === slug);
 
-  if (!area || !details) {
+  if (!details) {
     return <div className={styles.notFound}>Practice area not found.</div>;
   }
 

@@ -5,17 +5,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   padding: 1rem 2rem;
+
   z-index: 10;
   user-select: none;
   box-sizing: border-box;
+
   background-color: #bc9d36;
   color: white;
 }
 
+/* Logo */
 .logoContainer {
   display: flex;
   align-items: center;
+  gap: 0.8rem;
+
   text-decoration: none;
   color: #0c0909;
   cursor: pointer;
@@ -28,10 +34,10 @@
 }
 
 .logoText {
-  text-decoration: none;
   color: #0c0909;
   font-weight: 700;
   font-size: 1.2rem;
+  line-height: 1.2;
 }
 
 /* ========== Menu Button (Hamburger) ========== */
@@ -44,8 +50,10 @@
   height: 24px;
   justify-content: center;
   align-items: center;
+
   user-select: none;
   z-index: 20;
+
   background: transparent;
   border: none;
   padding: 0;
@@ -61,10 +69,9 @@
   background-color: #0c0909;
   transition: all 0.3s ease;
   border-radius: 2px;
-  transform-origin: center;
 }
 
-/* Animate hamburger to "X" when open */
+/* Animate hamburger to "X" */
 .menuBtnOpen .bar:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -81,9 +88,12 @@
 .menuItems {
   display: flex;
   gap: 1.5rem;
+
   list-style: none;
   margin: 0;
-  padding-right: 8rem;
+
+  padding-right: 2rem; /* FIXED (was 8rem) */
+
   align-items: center;
 }
 
@@ -101,8 +111,49 @@
   color: #ffffff;
 }
 
-/* ========== Responsive ========== */
+/* ========== iPad / Tablet Fix ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    padding: 1rem 1.5rem;
+  }
+
+  .logoContainer {
+    gap: 0.6rem;
+  }
+
+  .logoImage {
+    height: 85px;
+  }
+
+  .logoText {
+    font-size: 1rem;
+  }
+
+  .menuItems {
+    gap: 1rem;
+    padding-right: 1rem;
+  }
+
+  .menuItems li a {
+    font-size: 0.95rem;
+  }
+}
+
+/* ========== Mobile ========== */
 @media (max-width: 768px) {
+  .navbar {
+    padding: 0.8rem 1rem;
+  }
+
+  .logoContainer {
+    gap: 0.5rem;
+    max-width: 70%;
+  }
+
+  .menuBtn {
+    margin-left: auto;
+  }
+
   .menuBtn {
     display: flex;
   }
@@ -110,50 +161,54 @@
   .menuItems {
     position: absolute;
     top: 100%;
-    right: 0;
+    right: 1rem;
+    width: calc(100% - 2rem);
     background: #bc9d36;
-    width: 80%;
-    overflow: hidden;
     flex-direction: column;
     align-items: flex-start;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
     max-height: 0;
-    transition:
-      max-height 0.4s ease-in-out,
-      padding 0.3s ease;
-      padding-right: 0rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.35s ease-in-out;
+    padding: 0.5rem 0;
   }
 
   .menuItemsOpen {
-    max-height: 1000px;
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .menuItems li {
     width: 100%;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #333;
-    box-sizing: border-box;
-  }
-
-  .menuItems li:last-child {
+    padding: 0;
     border-bottom: none;
   }
 
   .menuItems li a {
-    width: 100%;
     display: block;
-    font-size: 1.2rem;
-    padding-left: 1rem;
-    text-align: left;
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #0c0909;
+    transition: all 0.3s ease;
   }
 
+  .menuItems li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+  }
+
+  /* Logo adjustments */
   .logoImage {
-    height: 80px;
+    height: 70px;
   }
 
   .logoText {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 }

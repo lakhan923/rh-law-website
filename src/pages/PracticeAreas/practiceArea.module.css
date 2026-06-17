@@ -1,6 +1,6 @@
 .practiceAreas {
-  padding: 4rem 1.5rem;
-  background-color: #f9f9f9;
+  padding: 5rem 1.5rem;
+  background: #f9f9f9;
 }
 
 .container {
@@ -11,9 +11,17 @@
 
 .heading {
   font-size: 2.5rem;
-  margin-bottom: 1.5rem;
+  font-weight: 700;
   color: #1f1f1f;
-  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.subHeading {
+  max-width: 750px;
+  margin: 0 auto 3rem;
+  color: #666;
+  font-size: 1.05rem;
+  line-height: 1.8;
 }
 
 .grid {
@@ -24,18 +32,22 @@
 
 .card {
   background: #fff;
-  border-radius: 12px;
-  padding: 2.5rem 1.5rem;
-  text-align: center;
+  border-radius: 14px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   text-decoration: none;
   color: inherit;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
 }
 
 .icon {
@@ -48,23 +60,49 @@
   font-size: 1.3rem;
   font-weight: 600;
   color: #222;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .description {
-  font-size: 1rem;
   color: #555;
   line-height: 1.6;
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
-/* Medium screens (tablets) */
+.readMore {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #d4af37;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.readMore:hover {
+  color: #b8931f;
+  transform: translateX(5px);
+}
+
+/* Tablet */
+
 @media (max-width: 768px) {
   .heading {
     font-size: 2rem;
   }
 
+  .subHeading {
+    font-size: 1rem;
+  }
+
   .icon {
-    font-size: 2.2rem;
+    font-size: 2.4rem;
   }
 
   .title {
@@ -76,7 +114,8 @@
   }
 }
 
-/* Small screens (phones) */
+/* Mobile */
+
 @media (max-width: 480px) {
   .practiceAreas {
     padding: 3rem 1rem;
@@ -86,8 +125,13 @@
     font-size: 1.8rem;
   }
 
+  .subHeading {
+    font-size: 0.95rem;
+  }
+
   .card {
     padding: 1.5rem;
+    min-height: auto;
   }
 
   .icon {
@@ -100,5 +144,9 @@
 
   .description {
     font-size: 0.9rem;
+  }
+
+  .readMore {
+    font-size: 0.95rem;
   }
 }

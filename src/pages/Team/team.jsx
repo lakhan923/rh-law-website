@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import partnersData from "../../data/partnersData.json";
 import styles from "./team.module.css";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaArrowRight } from "react-icons/fa";
 
 export default function Team() {
   const [active, setActive] = useState(null);
@@ -50,13 +50,10 @@ export default function Team() {
                 <p>{index < 2 ? "Founding Partner" : "Consultant"}</p>
 
                 {/* READ MORE INDICATOR */}
-                {!isActive && (
-                  <span className={styles.readMore}>Read more</span>
-                )}
-
-                {isActive && (
-                  <span className={styles.readMoreActive}>Click to close</span>
-                )}
+                <span className={styles.readMore}>
+                  {isActive ? "Click to close" : "Read more"}
+                  <FaArrowRight />
+                </span>
 
                 {/* MOBILE DETAIL INSIDE CARD */}
                 {isMobile && isActive && (

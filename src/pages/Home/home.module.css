@@ -65,7 +65,9 @@
   font-size: 1rem;
   text-decoration: none;
   border-radius: 6px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -89,11 +91,9 @@
 /* === Quotes Styling and profile section === */
 
 .profileSection {
-  padding: 4rem 2rem;
-  background-color: #f6f2ec;
+  padding: 5rem 1.5rem;
+  background: #f6f2ec;
   text-align: center;
-  position: relative;
-  z-index: 2;
 }
 
 .sectionTitle {
@@ -101,95 +101,120 @@
   font-weight: 700;
   color: #002f6c;
   margin-bottom: 2rem;
-  letter-spacing: 1.4px;
   text-transform: uppercase;
+  letter-spacing: 1.4px;
   border-bottom: 3px solid #d4af37;
   display: inline-block;
   padding-bottom: 0.3rem;
 }
 
-.flexWrapper {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 4rem;
-  flex-wrap: wrap;
-  text-align: left;
-  max-width: 1200px;
-  margin: 0 auto;
+.sectionTitle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 4px;
+  border-radius: 10px;
+  background: #d4af37;
 }
 
 .profileGrid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
 }
 
 .profileCard {
   background: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  width: 300px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .profileCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.14);
 }
 
-.profileCard h3,
-.profileCard .profileRole,
-.profileCard p {
-  margin: 0.5rem 0;
-  text-align: center; /* center under icon/photo */
-  color: #000;
-}
-
-.profileRole {
-  font-weight: 600;
-  color: #777;
-}
-
-/* Unified circular icon/photo */
 .profileIcon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1rem auto;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  border: 4px solid #f3f3f3;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Photo inside circle */
 .profileIcon img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
 
-/* React icon inside circle */
 .profileIcon svg {
   width: 100%;
   height: 100%;
-  color: #5b5858;
+  color: #777;
+}
+
+.profileCard h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.profileRole {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #777;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+}
+
+.profileDescription {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }
 
 .readMore {
-  display: inline-block;
-  margin-top: 0.75rem;
-  color: #e6b800;
-  font-weight: 600;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
+  color: #d4af37;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 .readMore:hover {
-  text-decoration: underline;
+  color: #b8931f;
+  transform: translateX(5px);
 }
 
 /* Quote Carousel Styling */
@@ -320,7 +345,9 @@
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .affiliationCard:hover {
@@ -347,7 +374,10 @@
   object-fit: contain;
   filter: grayscale(100%);
   opacity: 0.8;
-  transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease,
+    filter 0.3s ease;
 }
 
 .affiliationCard:hover img {
@@ -396,25 +426,48 @@
 
   .sectionTitle {
     font-size: 1.6rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     letter-spacing: 1px;
   }
 
   .profileGrid {
-    flex-direction: column;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
     max-width: 100%;
   }
 
   .profileCard {
     width: 100%;
-    padding: 1rem;
-    height: auto;
+    min-height: auto;
+    padding: 1.5rem;
+    border-radius: 14px;
   }
 
-  .profileImage {
-    height: 220px;
-    width: 200px;
+  .profileCard h3 {
+    font-size: 1.2rem;
+  }
+
+  .profileIcon {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1rem;
+  }
+
+  .profileRole {
+    font-size: 0.85rem;
+  }
+
+  .profileDescription {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .readMore {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.95rem;
   }
 
   .quoteCarousel {
@@ -455,10 +508,6 @@
 
   .affiliationsSection {
     padding: 3rem 1rem;
-  }
-
-  .sectionTitle {
-    font-size: 1.15rem;
   }
 
   .affiliationsGrid {

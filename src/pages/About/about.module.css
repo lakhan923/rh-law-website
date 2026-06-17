@@ -17,12 +17,6 @@
   color: #2d2d2d;
 }
 
-.subTitle {
-  font-size: 2rem;
-  margin: 3rem 0 1.5rem;
-  color: #1a1a1a;
-}
-
 .intro {
   font-size: 1.2rem;
   color: #444;
@@ -50,13 +44,15 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   width: 280px;
   text-align: left;
-   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .card:hover,
 .founderCard:hover {
-  transform: translateY(-5px); 
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15); 
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card p {
@@ -89,7 +85,9 @@
   padding: 2rem 1.5rem;
   border-radius: 12px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   text-align: left;
 }
 
@@ -134,43 +132,95 @@
 }
 
 .practiceAreasWrapper {
-  position: relative; /* to prevent overlap */
-  padding: 2rem 1rem;
-  background-color: #f9f9f9; /* optional, to visually separate */
-  z-index: 5; /* adjust as needed */
-  margin-bottom: 3rem; /* space below to prevent overlap */
-  box-sizing: border-box;
+  position: relative;
+  padding: 3rem 1rem;
+  background: #f9f9f9;
+  border-radius: 12px;
 }
 
-.practiceLink {
-  display: flex;
-  align-items: center;
-  color: #0c0909;
-  text-decoration: none;
+/* Container */
+.practiceAreas {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subTitle {
+  font-size: 2rem;
   font-weight: 700;
-  transition: color 0.3s ease;
+  color: #1a1a1a;
+  margin-bottom: 2rem;
+  position: relative;
 }
 
-.practiceLink:hover {
-  color: #166be0;
-  text-decoration: none;
-}
-
-.icon {
-  margin-right: 8px;
-  font-size: 1.25rem;
-  color: #bc9d36;
+.subTitle::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: #bc9d36;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
 }
 
 .areaList {
   list-style: none;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
-  color: #333;
-  font-size: 1rem;
+}
+
+/* Link card style */
+.practiceLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  padding: 1rem 1.2rem;
+  border-radius: 10px;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* subtle hover glow */
+.practiceLink::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(188, 157, 54, 0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* hover effect */
+.practiceLink:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  color: #bc9d36;
+}
+
+.practiceLink:hover::before {
+  opacity: 1;
+}
+
+/* icon style */
+.icon {
+  font-size: 1.3rem;
+  color: #bc9d36;
+  min-width: 20px;
+  transition: transform 0.3s ease;
+}
+
+.practiceLink:hover .icon {
+  transform: scale(1.15) rotate(5deg);
 }
 
 .cta {
@@ -202,6 +252,72 @@
 }
 
 /* Responsive */
+
+@media (max-width: 480px) {
+  .aboutSection {
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+
+  .subTitle {
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .card {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .card h2 {
+    font-size: 1.2rem;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+  }
+
+  .founderCard {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .founderName {
+    font-size: 1.1rem;
+  }
+
+  .founderBio {
+    font-size: 0.9rem;
+  }
+
+  .areaList {
+    font-size: 0.95rem;
+    gap: 0.6rem;
+  }
+
+  .cta h2 {
+    font-size: 1.3rem;
+  }
+
+  .cta {
+    padding: 1.5rem;
+  }
+
+  .ctaButton {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
 @media (max-width: 768px) {
   .cardSection,
   .founderProfiles,
@@ -216,6 +332,6 @@
   }
 
   .intro {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 }

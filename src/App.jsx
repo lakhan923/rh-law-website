@@ -13,11 +13,13 @@ import PracticeDetail from "./pages/PracticeAreas/practiceDetail";
 import PrivacyPolicy from "./pages/PrivacyPolicy/privacyPolicy";
 import Admin from "./pages/Admin/admin";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <>
       <Navbar />
       <div className="container">
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
