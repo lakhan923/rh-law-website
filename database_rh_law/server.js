@@ -68,11 +68,10 @@ app.post("/api/login", (req, res) => {
 });
 
 // email helper functions
-const sendAdminEmail = async ({ subject, text, cc }) => {
+const sendAdminEmail = async ({ subject, text }) => {
   return transporter.sendMail({
     from: `"R & H Law Associates" <${process.env.EMAIL_USER}>`,
-    to: "qurratulain.rehman@rhlaw.com",
-    cc: cc || "hareem.hilal@rhlaw.com",
+    to: ["qurratulain.rehman@rhlaw.com", "hareem.hilal@rhlaw.com"],
     subject,
     text,
   });
