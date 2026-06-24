@@ -18,27 +18,23 @@ export default function Team() {
 
   // Open founder based on URL hash
   useEffect(() => {
-    if (location.hash) {
-      const founderId = location.hash.replace("#", "");
+    if (!location.hash) return;
+    const founderId = location.hash.replace("#", "");
+    const exists = partnersData.some((p) => p.id === founderId);
 
-      const exists = partnersData.some((p) => p.id === founderId);
+    if (!exists) return;
 
-      if (exists) {
-        setActive(founderId);
+    setActive(founderId);
+    setTimeout(() => {
+      const element = document.getElementById(founderId);
 
-        // Smooth scroll after rendering
-        setTimeout(() => {
-          const detailElement = document.querySelector(`.${styles.detailBox}`);
-
-          if (detailElement) {
-            detailElement.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        }, 100);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       }
-    }
+    }, 200);
   }, [location]);
 
   const activePerson = partnersData.find((p) => p.id === active);
@@ -59,11 +55,22 @@ export default function Team() {
 
             return (
               <div
+                id={p.id}
                 key={p.id}
                 className={`${styles.card} ${
                   isActive ? styles.activeCard : ""
                 }`}
-                onClick={() => setActive(isActive ? null : p.id)}
+                onClick={() => {
+                  setActive(isActive ? null : p.id);
+                  if (!isActive) {
+                    setTimeout(() => {
+                      document.getElementById(p.id)?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                    }, 100);
+                  }
+                }}
               >
                 <div className={styles.image}>
                   {p.id === "hareem" ? (
