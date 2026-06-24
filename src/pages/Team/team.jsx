@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import partnersData from "../../data/partnersData.json";
 import styles from "./team.module.css";
 import { FaUser, FaArrowRight } from "react-icons/fa";
@@ -6,6 +7,7 @@ import { FaUser, FaArrowRight } from "react-icons/fa";
 export default function Team() {
   const [active, setActive] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth <= 600);
@@ -13,6 +15,31 @@ export default function Team() {
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  // Open founder based on URL hash
+  useEffect(() => {
+    if (location.hash) {
+      const founderId = location.hash.replace("#", "");
+
+      const exists = partnersData.some((p) => p.id === founderId);
+
+      if (exists) {
+        setActive(founderId);
+
+        // Smooth scroll after rendering
+        setTimeout(() => {
+          const detailElement = document.querySelector(`.${styles.detailBox}`);
+
+          if (detailElement) {
+            detailElement.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        }, 100);
+      }
+    }
+  }, [location]);
 
   const activePerson = partnersData.find((p) => p.id === active);
 
@@ -49,13 +76,12 @@ export default function Team() {
                 <h3>{p.name}</h3>
                 <p>{index < 2 ? "Founding Partner" : "Consultant"}</p>
 
-                {/* READ MORE INDICATOR */}
                 <span className={styles.readMore}>
                   {isActive ? "Click to close" : "Read more"}
                   <FaArrowRight />
                 </span>
 
-                {/* MOBILE DETAIL INSIDE CARD */}
+                {/* Mobile details */}
                 {isMobile && isActive && (
                   <div className={styles.mobileDetail}>
                     <h4>{p.title}</h4>
@@ -71,7 +97,7 @@ export default function Team() {
           })}
         </div>
 
-        {/* DESKTOP DETAIL BELOW GRID */}
+        {/* Desktop details */}
         {!isMobile && activePerson && (
           <div className={styles.detailBox}>
             <h2>{activePerson.name}</h2>
