@@ -81,7 +81,7 @@ function Footer() {
             <div className={styles.followUsSection}>
               <h4 className={styles.foundersTitle}>Partners</h4>
 
-              <div className={styles.partnerLinks}>
+              {/* <div className={styles.partnerLinks}>
                 <a
                   href="mailto:qurratulain.rehman@rhlaw.com"
                   className={styles.partnerLink}
@@ -92,6 +92,24 @@ function Footer() {
 
                 <a
                   href="mailto:hareem.hilal@rhlaw.com"
+                  className={styles.partnerLink}
+                >
+                  <FaEnvelope className={styles.icon} />
+                  <span>Hareem Hilal</span>
+                </a>
+              </div> */}
+
+              <div className={styles.partnerLinks}>
+                <a
+                  href="mailto:rhlawassociate@gmail.com"
+                  className={styles.partnerLink}
+                >
+                  <FaEnvelope className={styles.icon} />
+                  <span>Qurratulain Rehman</span>
+                </a>
+
+                <a
+                  href="mailto:rhlawassociate@gmail.com"
                   className={styles.partnerLink}
                 >
                   <FaEnvelope className={styles.icon} />

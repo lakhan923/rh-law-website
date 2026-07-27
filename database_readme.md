@@ -80,3 +80,6 @@ Appointment is approved or scheduled by the admin.
 
 # Completed	
 Appointment has been fulfilled or completed.
+
+# To open Admin login page click:
+https://rhlawassociatesandconsultants.com/login-admin

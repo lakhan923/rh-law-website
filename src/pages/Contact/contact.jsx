@@ -87,7 +87,7 @@ function Contact() {
               </a>
             </p>
             <p>
-              <FaEnvelope className={styles.icon} />
+              {/* <FaEnvelope className={styles.icon} />
               <span className={styles.emailColumn}>
                 <a
                   href="mailto:qurratulain.rehman@rhlaw.com"
@@ -101,6 +101,16 @@ function Contact() {
                   className={styles.contactLink}
                 >
                   hareem.hilal@rhlaw.com
+                </a>
+              </span> */}
+
+              <FaEnvelope className={styles.icon} />
+              <span className={styles.emailColumn}>
+                <a
+                  href="mailto:rhlawassociate@gmail.com"
+                  className={styles.contactLink}
+                >
+                  rhlawassociate@gmail.com
                 </a>
               </span>
             </p>
